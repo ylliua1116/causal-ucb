@@ -1,0 +1,97 @@
+/* CAUSAL-UCB V7: layout continuity, animated causal signal flow, exact manuscript figure plates. */
+:root{--v7-rail:#6c9fdc;--v7-particle:#35bba9}
+/* Remove the stacked empty handoff blocks and opaque separator between dark and light chapters. */
+.cinematic::after{height:clamp(135px,19vh,210px)!important;background:linear-gradient(180deg,transparent 0%,rgba(6,20,35,.34) 43%,#081a2b 100%)!important}
+.cinema-handoff{height:clamp(44px,5vw,68px)!important;margin-top:-2px!important;background:linear-gradient(180deg,#081a2b 0%,#081b2b 100%)!important;box-shadow:none!important}
+.cinema-handoff::before{filter:blur(35px)!important;opacity:.27!important}
+.cinema-handoff .handoff-beam{opacity:.1!important;box-shadow:none!important}
+.cinema-handoff .handoff-node{height:5px;width:5px;opacity:.55;box-shadow:0 0 13px 2px #42dfd953}
+#live-network{padding-bottom:0!important;border:0!important;box-shadow:none!important}
+#live-network .interactive-wrap{padding-bottom:clamp(20px,3.1vw,43px)!important}
+.network-paper-transition{height:clamp(72px,7.5vw,105px)!important;margin-top:0!important;border:0!important;background:linear-gradient(180deg,#15364e 0%,#32566f 21%,#7291aa 47%,#cfdeec 77%,#f8fbff 100%)!important}
+.network-paper-transition::before{opacity:.3}
+#research-intro{padding-top:23px!important;padding-bottom:clamp(54px,6vw,82px)!important;background:none!important}
+#research-intro .hero-aside{margin-top:0!important}
+#research-intro.hero{gap:24px!important}
+/* Let content, not empty decorative blocks, define the chapter rhythm. */
+#overview.section{padding-top:clamp(60px,7vw,88px)}
+#results.section{padding-bottom:clamp(55px,6vw,80px)}
+.paper-atlas{margin-bottom:clamp(30px,4vw,48px)}
+/* A single connected reading path: 01 -> 02 -> 03 -> 04 -> 05 and feedback -> 01. */
+.flow-interactive{background:radial-gradient(ellipse at 52% 15%,#e7f3fc,transparent 72%),linear-gradient(165deg,#f9fbff,#f1f5fc)!important}
+.flow-interactive .flow-steps{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr) minmax(22px,.17fr)) minmax(0,1fr)!important;column-gap:0!important;row-gap:7px!important;align-items:center!important}
+.flow-interactive .pipeline-step{min-width:0!important;width:100%!important;min-height:172px!important;padding:18px 13px!important;z-index:2;gap:9px!important;justify-content:flex-start!important;align-self:stretch;box-shadow:0 8px 23px #19385c0c!important;border:1px solid #d5e3f4!important;transition:border-color .25s,background .25s,box-shadow .25s!important}
+.flow-interactive .pipeline-step[aria-pressed=true]{border-color:#5c95db!important;box-shadow:0 7px 24px #3f86c62b!important}
+.flow-interactive .pipeline-step.flow-passive-focus:not([aria-pressed=true]){background:linear-gradient(160deg,#fff,#f2fbff)!important;border-color:#a0c7e9!important;box-shadow:0 8px 22px #4cb1c52e!important}
+.flow-interactive .pipeline-copy strong{font-size:clamp(12px,1vw,14px)!important;line-height:1.45!important}
+.flow-interactive .pipeline-copy small{font-size:clamp(10px,.78vw,11px)!important;line-height:1.48!important}
+.flow-interactive .pipeline-index{font-size:clamp(20px,1.7vw,26px)!important}
+/* Re-enable the connectors explicitly hidden in V5. */
+.flow-interactive .pipeline-connector{display:block!important;position:relative!important;height:172px!important;width:100%!important;min-width:0;overflow:visible!important;align-self:center;flex:none;background:none!important;z-index:1}
+.flow-interactive .pipeline-connector::before{content:"";position:absolute;top:50%;left:0;right:0;height:2px;background:linear-gradient(90deg,#c7d8f0,#6ba6d3,#c7d8f0);transform:translateY(-50%)}
+.flow-interactive .pipeline-connector::after{content:"";position:absolute;top:calc(50% - 5px);right:1px;height:9px;width:9px;border-right:2px solid #5c99ce;border-top:2px solid #5c99ce;transform:rotate(45deg)}
+.flow-interactive .pipeline-connector span{position:absolute!important;left:0;top:calc(50% - 5px)!important;height:10px!important;width:10px!important;border:2px solid #eafdf9!important;border-radius:50%!important;background:var(--v7-particle)!important;box-shadow:0 0 11px #36bba99b!important;animation:v7-flow-right 1.95s ease-in-out infinite!important}
+.flow-interactive .pipeline-connector:nth-of-type(2) span{animation-delay:-.42s!important}
+.flow-interactive .pipeline-connector:nth-of-type(3) span{animation-delay:-.88s!important}
+.flow-interactive .pipeline-connector:nth-of-type(4) span{animation-delay:-1.29s!important}
+@keyframes v7-flow-right{0%{left:0;opacity:0;transform:scale(.5)}20%{opacity:1}83%{opacity:1}100%{left:calc(100% - 11px);transform:scale(1.06);opacity:0}}
+/* feedback return spans all nine grid columns and follows the same visual grammar */
+.flow-interactive .feedback-return{display:block!important;grid-column:1/-1!important;height:52px!important;margin:0 0 2px!important;min-width:0!important}
+.flow-interactive .feedback-return svg{height:50px!important;opacity:.65!important}
+.flow-interactive .feedback-return span{top:17px!important;background:#f0f6fd!important;color:#557caf;padding:2px 11px!important;border-radius:30px}
+.flow-interactive .feedback-return path:first-child{stroke:#6b93c7!important;stroke-width:1.8!important}
+.flow-interactive .feedback-return path:nth-child(2){stroke:#6b93c7!important}
+.flow-interactive .flow-detail{grid-column:1/-1}
+.motion-off .flow-interactive .pipeline-connector span{animation-play-state:paused!important}
+.motion-off .flow-interactive .pipeline-step.flow-passive-focus{background:#fff!important}
+/* Actual manuscript PDF crops, displayed as accurate published figures, not independent re-plots. */
+.audit-spotlight{grid-template-columns:minmax(0,1.25fr) minmax(315px,.75fr)}
+.audit-visual{padding:clamp(14px,2vw,28px)!important;min-height:clamp(310px,36vw,465px)!important;background:linear-gradient(150deg,#f7faff,#f0f6fd)!important}
+.audit-visual>a{max-width:780px}
+.audit-visual img{width:100%;max-height:550px!important;object-fit:contain;mix-blend-mode:multiply}
+.audit-copy{gap:13px!important;padding:clamp(24px,2.9vw,37px)!important}
+.audit-copy .audit-source{border-top:1px solid #e4edf5;padding-top:12px;font-size:11px;line-height:1.75;color:#57769b}
+.audit-copy .audit-paper-link{margin-top:-7px}
+/* Native estimator difference appears only after actual Python output arrives. */
+#live-lab .lab-comparison[hidden]{display:none!important}
+#live-lab .lab-comparison{background:linear-gradient(140deg,#f6fbff,#f0f9f7);border:1px solid #cde6e8;border-radius:14px;padding:16px 17px;margin:0 0 16px;color:#1b4b64}
+#live-lab .lab-comparison-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font:700 12px Inter,Arial,sans-serif}
+#live-lab .lab-comparison-head span{font:500 10px Inter,Arial,sans-serif;color:#65829a}
+#live-lab #lab-match-note{font:500 11.5px/1.7 Inter,Arial,sans-serif;color:#486e7b;margin:8px 0 13px}
+#live-lab .lab-estimator-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px}
+#live-lab .lab-estimator-card{display:flex;flex-direction:column;gap:4px;padding:11px 12px;background:#fff;border:1px solid #d9e8ee;border-radius:10px;min-width:0}
+#live-lab .lab-estimator-title{font:720 11px Inter,Arial,sans-serif}
+#live-lab .lab-estimator-card b{font:720 22px/1.1 Inter,Arial,sans-serif;color:#173954;letter-spacing:-.035em}
+#live-lab .lab-estimator-card small{font:450 10px/1.5 Inter,Arial,sans-serif;color:#76909e}
+/* On compact screens keep the sequence vertical, not disconnected columns. */
+@media(max-width:1100px){
+ .flow-interactive .flow-steps{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+ .flow-interactive .pipeline-step{min-height:0!important;padding:17px 19px!important;flex-direction:row!important;align-items:center!important;gap:18px!important}
+ .flow-interactive .pipeline-index{font-size:25px!important}
+ .flow-interactive .pipeline-copy strong{font-size:15px!important}
+ .flow-interactive .pipeline-copy small{font-size:12px!important}
+ .flow-interactive .pipeline-connector{height:34px!important;width:3px!important;margin:0 auto!important;min-width:3px!important;overflow:visible!important}
+ .flow-interactive .pipeline-connector::before{height:100%;width:2px;top:0;left:0;right:auto;transform:none;background:linear-gradient(180deg,#d2e4f7,#589ac9)}
+ .flow-interactive .pipeline-connector::after{top:auto;bottom:3px;left:-4px;right:auto;transform:rotate(135deg);height:9px;width:9px}
+ .flow-interactive .pipeline-connector span{top:0!important;left:-4px!important;animation:v7-flow-down 1.8s ease-in-out infinite!important}
+ @keyframes v7-flow-down{0%{top:0;opacity:0}18%{opacity:1}80%{opacity:1}100%{top:calc(100% - 8px);opacity:0}}
+ .flow-interactive .feedback-return{height:45px!important}
+ .flow-interactive .feedback-return svg{height:41px!important}
+ .flow-interactive .feedback-return span{top:14px!important;font-size:9px!important;letter-spacing:.015em!important}
+}
+@media(max-width:900px){.audit-spotlight{grid-template-columns:minmax(0,1fr)}.audit-visual{min-height:270px!important}.audit-copy{border:0;border-top:1px solid #e0e8f0}}
+@media(max-width:680px){
+ .cinema-handoff{height:34px!important}
+ #live-network .interactive-wrap{padding-bottom:18px!important}
+ .network-paper-transition{height:66px!important}
+ #research-intro{padding-top:14px!important}
+ .flow-interactive{padding:12px!important}
+ .flow-interactive .pipeline-step{padding:13px 10px!important;gap:11px!important}
+ .flow-interactive .pipeline-index{font-size:20px!important}
+ .flow-interactive .pipeline-copy strong{font-size:12px!important}
+ .flow-interactive .pipeline-copy small{font-size:10px!important}
+ .flow-interactive .feedback-return span{font-size:7px!important;padding:2px 4px!important}
+ .audit-visual{padding:12px!important;min-height:220px!important}
+ #live-lab .lab-estimator-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){.flow-interactive .pipeline-connector span{animation:none!important;opacity:.9!important}.flow-interactive .pipeline-step.flow-passive-focus{background:#fff!important}}
