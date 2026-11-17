@@ -82,3 +82,9 @@ This repository contains the core executable comparison and the data needed by t
 ## License
 
 No open-source license has been specified yet. Please contact the repository owner for reuse permissions.
+
+## Website V11 (November 2026)
+
+The site in `docs/` now follows the uploaded 66-page manuscript revision rather than the earlier 64-page arXiv v1 layout. Main figures 3–7 and appendix figures 26, 27, 28 and 31 are extracted directly from that revision with verified page references. An optional NeurIPS poster preview (PDF and editable PPTX) is included. The controls have larger mobile-friendly hit areas and keyboard support. See [`CHANGELOG_V11.md`](CHANGELOG_V11.md), [`DEPLOY_CN.md`](DEPLOY_CN.md) and [`docs/FIGURE_PROVENANCE_V11.json`](docs/FIGURE_PROVENANCE_V11.json).
+
+**The numerical records and algorithms are not changed by this website update.** The local `Paper` button serves the supplied PDF; `arXiv` points to https://arxiv.org/abs/2611.09665.

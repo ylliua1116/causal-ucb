@@ -111,42 +111,47 @@
   el('replay-next').addEventListener('click',()=>{playing=false;step=(step+1)%xkeys(current()).length;render(false);});
   range.addEventListener('input',()=>{playing=false;step=+range.value;render(false);});
   if('IntersectionObserver' in window){new IntersectionObserver(es=>{inView=es.some(e=>e.isIntersecting);lastTime=0;},{threshold:.04}).observe(root);}else inView=true;
-  // Figure images are unchanged crops from the accompanying PDF.
+  // High-resolution figure crops from the user-supplied 66-page revision (paper pages 8–10).
   const plates=[
-    ['Certified online selection','Original Figure 3: network schematic, cumulative target regret, pairwise ATE error and decision-active certificate diameter. 24 paired seeds, 200 rounds.'],
-    ['Interference sensitivity','Original Figure 4: target regret and maximum pairwise ATE error across five interference strengths.'],
-    ['Logging–target overlap','Original Figure 5: action–exposure support, context shift and joint-match diagnostics across overlap regimes.'],
-    ['Mechanism ablations','Original Figure 6: controlled variants and their target-regret/ATE behavior; removing OFU also changes other mechanisms.'],
-    ['Information–deployment frontier','Original Figure 7: exploration-rate sensitivity and the regret–deployment gap tradeoff.']
+    ['Fig. 3 · Certified online selection','24 paired seeds and 200 rounds: target regret, maximum pairwise ATE error and decision-active confidence width.'],
+    ['Fig. 4 · Interference sensitivity','Five interference strengths; target regret and pairwise ATE error are separate metrics.'],
+    ['Fig. 5 · Overlap is not context transport','Action–exposure support, post-burn-in context shift and joint matching across three overlap regimes.'],
+    ['Fig. 6 · Mechanism ablations','Controlled variants test doubly robust correction, exposure representation, and exploration; no-OFU is not an isolated optimism intervention.'],
+    ['Fig. 7 · Identification–deployment trade-off','Exploration-rate sensitivity and measured target-regret versus deployment-gap trade-off; not a general Pareto guarantee.']
   ];
   const plateTabs=document.querySelectorAll('[data-plate]');
   plateTabs.forEach(b=>b.addEventListener('click',()=>{
     const i=+b.dataset.plate,src=`assets/paper-figures/paper-figure-${i+3}.png`;
     el('paper-plate-image').src=src;el('paper-plate-image').alt=`Supplied manuscript Figure ${i+3}`;el('paper-plate-link').href=src;
-    el('paper-plate-caption').textContent=plates[i][0];el('paper-plate-description').textContent=plates[i][1];
-    plateTabs.forEach(t=>{t.classList.toggle('active',t===b);t.setAttribute('aria-selected',String(t===b));});
+    el('paper-plate-caption').textContent=plates[i][0];el('paper-plate-description').textContent=plates[i][1];const page=[8,9,9,10,10][i];el('paper-plate-page').textContent=page;el('paper-figure-source').href=`assets/paper/CAUSAL_UCB_2026_Latest_66p.pdf#page=${page}`;
+    plateTabs.forEach(t=>{t.classList.toggle('active',t===b);t.setAttribute('aria-selected',String(t===b));t.tabIndex=t===b?0:-1;});
   }));
-  // Exact raster crops from the supplied assets/Causal_B.pdf, not re-rendered experiment charts.
+  // Exact figure artwork cropped from the supplied 66-page revision; audit numbers/pages checked against that PDF.
   const audits=[
-    ['PAPER FIGURE 27 · PAGE 60 · 300 SEEDS × 160 ROUNDS',
-     'Full-path certificate coverage',
-     'Empirical all-time target-value coverage and the OFU path inequality, evaluated on 300 independently seeded runs (160 rounds per run). Both are 300/300; intervals are 95% Wilson intervals.',
-     'The reported fraction is 300/300 under this particular audited finite-state simulation. The Wilson interval and the stated assumptions matter; it is not unconditional black-box certification.',
-     'assets/paper-audit-figures/Fig27_Full_Path_Coverage_p60.png',27,60],
-    ['PAPER FIGURE 26 · PAGE 60 · 18 CELLS × 24 PAIRED SEEDS',
-     'Optimism versus greedy selection',
-     'Paired OFU-minus-Greedy target-regret differences across the 3-gap × 3-noise × 2-budget factorial. The zero line denotes equal regret; bars are 95% paired Student-t intervals. The full 18-cell labels also appear in manuscript Table 8 on the same page.',
-     'Negative paired differences favor the optimistic rule, but outcomes vary by gap, noise, and budget. The experiment does not show uniform dominance.',
+    ['FIG. 28 · PDF PAGE 61 · 300 SEEDS × 160 ROUNDS',
+     'Full-path coverage & OFU inequality',
+     'The full-path target-value coverage and OFU path inequality each hold for all 300 of 300 independent audited paths (160 rounds each), with 95% Wilson intervals.',
+     'This is an empirical audit of the stated finite-state, calibrated restricted model—not unconditional certification of arbitrary networks.',
+     'assets/paper-audit-figures/Fig28_Full_Path_Coverage_p61.png',28,61],
+    ['FIG. 26 · PDF PAGE 60 · 18-CELL GAP/NOISE/BUDGET SWEEP',
+     'Certified optimism: gap, noise and budget',
+     'A 3-gap × 3-noise × 2-budget paired comparison of optimistic selection against certified greedy selection. Differences below zero favor OFU.',
+     'The benefit is regime-dependent and the bars are descriptive paired 95% Student-t intervals, not a guarantee that optimism always wins.',
      'assets/paper-audit-figures/Fig26_Optimism_vs_Greedy_p60.png',26,60],
-    ['PAPER FIGURE 31 · PAGE 63 · 64 PAIRED SEEDS / MECHANISM',
-     'Hidden target-law misspecification',
-     'Full-path coverage of previously issued certificates under predeclared hidden target-law shifts. Four mechanisms share the same 64 seeds over five severity levels; ribbons are 95% Wilson intervals.',
-     'Deliberately false identification assumptions invalidate the certificate guarantee. High coverage in some perturbations reflects smaller changes in the actual target value, not universal robustness.',
-     'assets/paper-audit-figures/Fig31_Hidden_Misspecification_p63.png',31,63]
+    ['FIG. 27 · PDF PAGE 60 · 18 PAIRED CELLS × 24 SEEDS',
+     'Paired regret differences across 18 conditions',
+     'The paired 18-cell OFU-minus-Greedy regret forest uses 95% Student-t intervals over 24 paired seeds per cell.',
+     'The zero line denotes equal mean regret. Figure 27 is not the 300-seed full-path coverage audit; that is Figure 28.',
+     'assets/paper-audit-figures/Fig27_Paired_Regret_18_Cells_p60.png',27,60],
+    ['FIG. 31 · PDF PAGE 62 · HIDDEN ASSUMPTION VIOLATIONS',
+     'Certificate diagnostics under hidden violations',
+     'Full-path coverage conditional on false certificate issuance under six hidden assumption violations, with Wilson intervals; alongside final average radius with Student-t intervals.',
+     'Deliberately violated assumptions remove the formal certificate guarantee. Some empirical coverage under misspecification is not evidence of universal validity.',
+     'assets/paper-audit-figures/Fig31_Hidden_Misspecification_p62.png',31,62]
   ];
   const audButtons=document.querySelectorAll('[data-audit]');
   audButtons.forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.audit, a=audits[i];
-    el('audit-protocol').textContent=a[0];el('audit-title').textContent=a[1];el('audit-desc').textContent=a[2];el('audit-boundary').textContent=a[3];el('audit-image').src=a[4];el('audit-image').alt=a[1];el('audit-image-link').href=a[4];el('audit-original').href=a[4];const auditSource=el('audit-source'), auditPaper=el('audit-paper-link');if(auditSource)auditSource.textContent=`Source: manuscript Figure ${a[5]}, p. ${a[6]} · extracted directly from the supplied PDF.`;if(auditPaper)auditPaper.href=`assets/Causal_B.pdf#page=${a[6]}`;
+    el('audit-protocol').textContent=a[0];el('audit-title').textContent=a[1];el('audit-desc').textContent=a[2];el('audit-boundary').textContent=a[3];el('audit-image').src=a[4];el('audit-image').alt=a[1];el('audit-image-link').href=a[4];el('audit-original').href=a[4];const auditSource=el('audit-source'), auditPaper=el('audit-paper-link');if(auditSource)auditSource.textContent=`Source: manuscript Figure ${a[5]}, p. ${a[6]} · extracted directly from the supplied PDF.`;if(auditPaper)auditPaper.href=`assets/paper/CAUSAL_UCB_2026_Latest_66p.pdf#page=${a[6]}`;
     audButtons.forEach(t=>{t.classList.toggle('active',b===t);t.setAttribute('aria-selected',String(b===t));});
   }));
   render();requestAnimationFrame(loop);
