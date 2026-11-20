@@ -1,4 +1,4 @@
-"""A decision-active restricted-case DR certificate in a *restricted homogeneous* network.
+"""A decision-active V8-style DR certificate in a *restricted homogeneous* network.
 
 Assumptions: fixed global configuration z per arm, ring/local exposure completely
 known, nodes independently Bernoulli(eta/2), known q=(1-eta/2)^(2r+1),
@@ -6,7 +6,7 @@ no clipping of 1/q, no context shift or residual dependence across windows,
 matched-node outcomes are iid clip(mu_z+N(0,sigma^2),0,1) with known upper
 bound sigma, noises independent of random action masks and past history.
 
-This is NOT certification of arbitrary general black-box Theorem 1.
+This is NOT certification of arbitrary black-box V8 Theorem 1.
 """
 from dataclasses import dataclass
 from math import log, sqrt

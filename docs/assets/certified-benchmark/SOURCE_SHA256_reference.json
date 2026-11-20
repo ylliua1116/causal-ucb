@@ -1,0 +1,11 @@
+{
+  "version": "V9 source/provenance",
+  "sha256": {
+    "reference/main_per_round.csv.gz": "e989d4f004acac47c1d26f2dc42d0c9f1710b0e0a1e97befae0d787cb8698f47",
+    "summary.csv": "1a96f0749fee2289126a79101cc1851be0fac302531698fbddea0e72309d2fa3",
+    "per_seed.csv": "7a334ee8fae9aa8ca03ea48dded4302b3f00a845da6cb940ca9978d2f0968e6a",
+    "cert_dr_all_rounds.csv": "f8744ac52de253029e906cda8ce3b60fb6a1b614dfe9e5949fcb305540b3e412",
+    "seven-method-comparison.json": "441543ec5118f5140f5b84eab2fe47310789161edf6ce8ff25e6dbfa3e1d6e4b"
+  },
+  "description": "Original high mismatch five-reference gzip source unchanged; original certified CSV, per_seed.csv, summary.csv unchanged; seven-method JSON derived with no fabricated source rounds."
+}

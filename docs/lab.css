@@ -1,0 +1,67 @@
+/* CAUSAL-UCB browser lab: free local-compute lab styles, scoped to #live-lab */
+#live-lab{padding:clamp(72px,9vw,132px) 0 100px;background:radial-gradient(ellipse at 78% 0%,rgba(208,231,244,.85),transparent 53%),linear-gradient(180deg,#f6f9fd 0%,#fff 72%);color:#132a49;position:relative;overflow:clip}
+#live-lab .wrapper{max-width:1420px;margin:0 auto;padding-inline:clamp(20px,5vw,60px)}
+#live-lab .lab-eyebrow{font-family:Inter,Arial,sans-serif;font-size:13px;letter-spacing:.18em;color:#2e63ab;font-weight:780;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:32px}
+#live-lab .lab-dot{width:9px;height:9px;border-radius:100%;background:#21a890;box-shadow:0 0 0 5px #d6f4e9}
+#live-lab .lab-live-pill{font-family:Inter,Arial,sans-serif;letter-spacing:.08em;font-size:10px;font-weight:780;border:1px solid #c6e5dc;color:#167567;border-radius:30px;padding:7px 12px;background:#eafaf6}
+#live-lab .lab-intro{display:flex;gap:24px;align-items:end;justify-content:space-between;margin-bottom:35px}
+#live-lab h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(40px,4.25vw,66px);line-height:1.13;letter-spacing:-.045em;margin:0 0 17px;color:#0d2341;font-weight:650}
+#live-lab h2 em{font-style:normal;color:#416ea7}
+#live-lab .lab-intro p{font:400 16px/1.7 Inter,Arial,sans-serif;color:#607188;margin:0;max-width:700px}
+#live-lab .lab-intro p strong{color:#1f4b82;font-weight:680}
+#live-lab .lab-compute-chip{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #d6e3f1;border-radius:18px;padding:16px 20px;box-shadow:0 9px 34px rgba(45,89,140,.05);flex:none;margin-bottom:6px}
+#live-lab .lab-compute-symbol{display:grid;place-content:center;background:#e7f8f6;color:#158c7d;width:42px;height:42px;font-size:22px;border-radius:12px}
+#live-lab .lab-compute-chip b{display:block;font:730 14px Inter,Arial,sans-serif;color:#1a375b}
+#live-lab .lab-compute-chip small{display:block;color:#8494aa;font:500 11px/1.7 Inter,Arial,sans-serif}
+#live-lab .lab-layout{display:grid;grid-template-columns:minmax(265px,340px) minmax(0,1fr);gap:21px;align-items:start}
+#live-lab .lab-controls,#live-lab .lab-output{background:#fff;border:1px solid #d7e4f0;box-shadow:0 18px 55px rgba(20,49,93,.06);border-radius:22px;padding:28px}
+#live-lab .lab-controls-title{font:760 15px/1.4 Inter,Arial,sans-serif;color:#183957;border-bottom:1px solid #e7eef7;padding-bottom:20px;margin-bottom:24px}
+#live-lab .lab-controls-title small{display:block;font:450 11px Inter,Arial,sans-serif;color:#8294a9;margin-top:5px}
+#live-lab .lab-control{margin-bottom:22px}
+#live-lab .lab-control>label{display:flex;justify-content:space-between;align-items:center;color:#344f72;font:640 13px Inter,Arial,sans-serif;margin-bottom:11px}
+#live-lab .lab-control output{font:740 13px Inter,Arial,sans-serif;color:#287aba}
+#live-lab input[type=range]{width:100%;accent-color:#257ea8;cursor:pointer}
+#live-lab #lab-seed{width:100%;border-radius:10px;border:1px solid #d2dfed;padding:12px;font:650 15px Inter,Arial,sans-serif;color:#163c64;background:#f9fbfe}
+#live-lab .lab-ticks{display:flex;justify-content:space-between;color:#96a7b9;font:500 11px Inter,Arial,sans-serif;margin-top:7px}
+#live-lab .lab-method-select>label:first-child{margin-bottom:13px}
+#live-lab .lab-method-select>label small{font:400 11px Inter,Arial,sans-serif;color:#99a7b5}
+#live-lab .lab-method-select label.lab-choice{font:550 13px Inter,Arial,sans-serif;color:#536983;display:flex;justify-content:flex-start;gap:10px;margin:0 0 9px;padding:10px 12px;border:1px solid #e5edf4;border-radius:10px;cursor:pointer;align-items:center}
+#live-lab .lab-choice input{accent-color:#226ba7}
+#live-lab .lab-swatch{width:9px;height:9px;border-radius:2px;background:var(--swatch);flex:none}
+#live-lab .lab-run{background:linear-gradient(110deg,#126b9a,#207baf);color:white;border:none;border-radius:12px;padding:15px 16px;font:760 13px Inter,Arial,sans-serif;width:100%;cursor:pointer;transition:transform .2s,filter .2s}
+#live-lab .lab-run:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-2px)}
+#live-lab button:disabled{cursor:not-allowed;opacity:.54}
+#live-lab .lab-cancel{background:#fff;color:#a94343;border:1px solid #e2a6a6;border-radius:9px;padding:9px 14px;width:100%;font:600 12px Inter,Arial,sans-serif;margin-top:11px;cursor:pointer}
+#live-lab .lab-cancel[hidden]{display:none}
+#live-lab .lab-status{font:480 12px/1.6 Inter,Arial,sans-serif;color:#667f99;margin:15px 0 0;overflow-wrap:anywhere}
+#live-lab .lab-status.error{color:#b44040}
+#live-lab .lab-output{min-width:0;overflow:hidden}
+#live-lab .lab-output-top{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:24px}
+#live-lab .lab-micro{font:760 11px Inter,Arial,sans-serif;letter-spacing:.17em;color:#3980bc;margin-bottom:10px}
+#live-lab .lab-output h3{font:650 clamp(22px,2.7vw,34px) Georgia,'Times New Roman',serif;letter-spacing:-.025em;color:#153456;margin:0}
+#live-lab .lab-record{background:#f1f7fe;border:1px solid #d3e5f5;border-radius:20px;padding:8px 10px;font:740 9px Inter,Arial,sans-serif;letter-spacing:.06em;color:#3377ad;white-space:nowrap}
+#live-lab .lab-tabs{display:flex;gap:8px;flex-wrap:wrap}
+#live-lab .lab-tabs button{cursor:pointer;padding:10px 13px;font:660 11px Inter,Arial,sans-serif;background:white;border:1px solid #e0e9f2;border-radius:9px;color:#6a7d99}
+#live-lab .lab-tabs button.active{background:#eaf4ff;border-color:#bbd9ed;color:#205d99}
+#live-lab .lab-chart-wrap{margin:12px 0 0;border-radius:16px;border:1px solid #e3ebf4;background:linear-gradient(180deg,#fff,#fbfdff);min-width:0;overflow:hidden}
+#live-lab svg#lab-chart{display:block;width:100%;height:auto;min-height:260px;max-height:460px}
+#live-lab .lab-playback{margin:15px 0 10px;display:flex;align-items:center;gap:10px;font:570 11px Inter,Arial,sans-serif;color:#7186a0;flex-wrap:wrap}
+#live-lab .lab-playback button{border:1px solid #d0dfed;border-radius:8px;color:#416a92;background:#f9fcff;padding:8px 11px;font:670 11px Inter,Arial,sans-serif;cursor:pointer}
+#live-lab .lab-playback label{white-space:nowrap}
+#live-lab .lab-playback input{flex:1;min-width:85px}
+#live-lab .lab-legend{min-height:35px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font:530 12px Inter,Arial,sans-serif;color:#8296ae}
+#live-lab .lab-legend-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid #e3ebf3;border-radius:30px;padding:7px 11px;background:#fafcff;color:#536983;font-size:11px;font-weight:650}
+#live-lab .lab-legend-tag i{width:9px;height:9px;border-radius:50%}
+#live-lab .lab-table-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:23px}
+#live-lab .lab-table-head h4{color:#193e65;font:740 14px Inter,Arial,sans-serif;margin:0}
+#live-lab .lab-table-head small{font:530 10px Inter,Arial,sans-serif;color:#8a9ab0}
+#live-lab .lab-table-scroll{overflow-x:auto;margin-top:12px;border:1px solid #e4edf5;border-radius:12px}
+#live-lab .lab-table{width:100%;border-collapse:collapse;font:520 12px Inter,Arial,sans-serif;color:#526b83;white-space:nowrap}
+#live-lab .lab-table th{background:#f3f8fe;color:#41668f;text-align:left;padding:13px 12px;font-size:10px;text-transform:uppercase;letter-spacing:.055em}
+#live-lab .lab-table td{padding:13px 12px;border-top:1px solid #e8eff5}
+#live-lab .lab-method-note{background:#eaf4fc;border:1px solid #d6e6f5;border-radius:15px;padding:20px 24px;color:#526d8b;font:500 12.5px/1.75 Inter,Arial,sans-serif;margin:23px 0 0}
+#live-lab .lab-method-note strong{color:#225686}
+#live-lab .lab-method-note code{font:12px monospace;color:#1a669f;background:#dfedf8;padding:3px 5px;border-radius:4px}
+#live-lab .lab-technical{color:#8596a9;font:480 11px/1.6 Inter,Arial,sans-serif;margin:15px 0 0}
+@media(max-width:1020px){#live-lab .lab-intro{align-items:start;flex-direction:column}#live-lab .lab-compute-chip{margin-top:0}#live-lab .lab-layout{grid-template-columns:minmax(225px,290px) minmax(0,1fr)}#live-lab .lab-output,#live-lab .lab-controls{padding:19px}#live-lab .lab-output-top{flex-direction:column}}
+@media(max-width:710px){#live-lab{padding:68px 0}#live-lab .lab-layout{grid-template-columns:minmax(0,1fr)}#live-lab .lab-compute-chip{max-width:100%}#live-lab .lab-output-top{flex-direction:column}#live-lab svg#lab-chart{min-height:170px}#live-lab .lab-tabs button{font-size:10px;padding:9px 10px}#live-lab .lab-table-head{align-items:start;flex-direction:column}}

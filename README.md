@@ -83,10 +83,8 @@ This repository contains the core executable comparison and the data needed by t
 
 No open-source license has been specified yet. Please contact the repository owner for reuse permissions.
 
-## Research website
+## Website and research poster
 
-The project page groups recorded paper evidence and a separate browser-run Python experiment in one interactive workspace. The recorded study compares **seven methods**. The browser lab supports **five reference policies and three supported ablation settings**, executed using the repository's conditional Python implementation. Protocols, plots and certificate scopes remain distinct.
+The website groups recorded seven-method evidence and a separate five-policy browser Python experiment under one Evidence area. The original recorded archives, scientific figures, and Python algorithms are unchanged. The NeurIPS poster is linked beside the research introduction as a compact PDF preview; the webpage no longer offers editable slides.
 
-A compact NeurIPS research poster preview appears alongside the paper introduction. The poster is available as a view-only PDF. **Read Paper** opens the official OpenReview PDF: https://openreview.net/pdf?id=sO7mOWC5TC. The arXiv button links to https://arxiv.org/abs/2611.09665.
-
-For hosting, see [`DEPLOY_CN.md`](DEPLOY_CN.md). The website retains the source figures and their provenance files in `docs/assets/`.
+The **Read Paper** link points to the [official OpenReview PDF](https://openreview.net/pdf?id=sO7mOWC5TC). Figure crops were prepared from the manuscript source archive and may use different page numbering from the online PDF. The code and saved data do not change through this presentation update.

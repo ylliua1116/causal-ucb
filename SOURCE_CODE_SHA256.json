@@ -1,7 +1,7 @@
 {
-  "src/cert_dr.py": "4c94147dda2ed606d02044ed14eb589d450898ceacd990da0bdddc3b27450fb2",
+  "src/cert_dr.py": "6440e6e84d4c66b8a1e72d64d96a240625e0fb1f56b6b7947b97a63cde5c8d9c",
   "src/fast_compare.py": "ef0a4d10e7d306d6d42fa4519142e4a6f4d7ff4230eeed677d1a42e436ca94af",
-  "src/original_source/causal_ucb_conditional.py": "1840507a6428aca19c4dfeccbd3cd69dd8cc23a089f141355cb21809ee3f2886",
+  "src/original_source/causal_ucb_conditional.py": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f",
   "src/tests/test_certificate.py": "558f60ffc32516982e2316c74bda87daae08bc5604f95248e93ab1b0050be043",
-  "docs/live-lab/causal_ucb_conditional.py": "1840507a6428aca19c4dfeccbd3cd69dd8cc23a089f141355cb21809ee3f2886"
+  "docs/live-lab/causal_ucb_conditional.py": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f"
 }
