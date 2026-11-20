@@ -1,4 +1,4 @@
-"""A fully logged, conditional local-exposure submodel of V8 CAUSAL-UCB.
+"""A fully logged, conditional local-exposure submodel of CAUSAL-UCB.
 
 NOT a proof or byte-for-byte implementation of the accepted paper in general
 black-box networks. Identifies W(z;eta=0) by a local joint randomized event
@@ -159,7 +159,7 @@ class PastOnlyArm:
         """Anytime uniform conditional CI for noise-homogeneous matched rewards.
 
         Clipping a Gaussian variable is Lipschitz, hence sigma-subGaussian.
-        Known sigma is an ADDITIONAL assumption not in general V8 Theorem 1.
+        Known sigma is an ADDITIONAL assumption not in general Theorem 1.
         Hoeffding alternative needs only iid bounded matched target rewards.
         """
         n=self.matched_n

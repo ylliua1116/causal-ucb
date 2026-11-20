@@ -1,0 +1,63 @@
+{
+  "update": "NeurIPS 2026 manuscript-aligned website",
+  "source_of_truth": {
+    "file": "Online_Causal_Configuration_for_Networked_Systems_via_Doubly_Robust_Steady_State_Learning__15_ (4).pdf",
+    "pages": 66,
+    "role": "All figure crops, caption text and PDF page links follow this file"
+  },
+  "arxiv": {
+    "url": "https://arxiv.org/abs/2611.09665",
+    "version": "v1",
+    "pages": 64,
+    "role": "Public preprint link; page numbers may differ from supplied manuscript"
+  },
+  "main_figures": {
+    "3": {
+      "source_page": 8,
+      "asset": "assets/paper-figures/paper-figure-3.png"
+    },
+    "4": {
+      "source_page": 9,
+      "asset": "assets/paper-figures/paper-figure-4.png"
+    },
+    "5": {
+      "source_page": 9,
+      "asset": "assets/paper-figures/paper-figure-5.png"
+    },
+    "6": {
+      "source_page": 10,
+      "asset": "assets/paper-figures/paper-figure-6.png"
+    },
+    "7": {
+      "source_page": 10,
+      "asset": "assets/paper-figures/paper-figure-7.png"
+    }
+  },
+  "appendix_figures": {
+    "26": {
+      "page": 60,
+      "subject": "gap-noise-budget sensitivity",
+      "asset": "assets/paper-audit-figures/Fig26_Optimism_vs_Greedy_p60.png"
+    },
+    "27": {
+      "page": 60,
+      "subject": "18-cell paired regret forest",
+      "asset": "assets/paper-audit-figures/Fig27_Paired_Regret_18_Cells_p60.png"
+    },
+    "28": {
+      "page": 61,
+      "subject": "full-path 300 x 160 coverage",
+      "asset": "assets/paper-audit-figures/Fig28_Full_Path_Coverage_p61.png"
+    },
+    "31": {
+      "page": 62,
+      "subject": "assumption-violation certificate diagnostics",
+      "asset": "assets/paper-audit-figures/Fig31_Hidden_Misspecification_p62.png"
+    }
+  },
+  "poster": {
+    "local_pdf": "assets/poster/causal-ucb-poster.pdf",
+    "viewing_role": "Interpretive manuscript summary"
+  },
+  "scope": "Algorithms, saved scientific metrics and source experiment design unchanged; website file organization and documentation updated"
+}

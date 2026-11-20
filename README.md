@@ -83,8 +83,10 @@ This repository contains the core executable comparison and the data needed by t
 
 No open-source license has been specified yet. Please contact the repository owner for reuse permissions.
 
-## Website V11 (November 2026)
+## Research website
 
-The site in `docs/` now follows the uploaded 66-page manuscript revision rather than the earlier 64-page arXiv v1 layout. Main figures 3–7 and appendix figures 26, 27, 28 and 31 are extracted directly from that revision with verified page references. An optional NeurIPS poster preview (PDF and editable PPTX) is included. The controls have larger mobile-friendly hit areas and keyboard support. See [`CHANGELOG_V11.md`](CHANGELOG_V11.md), [`DEPLOY_CN.md`](DEPLOY_CN.md) and [`docs/FIGURE_PROVENANCE_V11.json`](docs/FIGURE_PROVENANCE_V11.json).
+The project page groups recorded paper evidence and a separate browser-run Python experiment in one interactive workspace. The recorded study compares **seven methods**. The browser lab supports **five reference policies and three supported ablation settings**, executed using the repository's conditional Python implementation. Protocols, plots and certificate scopes remain distinct.
 
-**The numerical records and algorithms are not changed by this website update.** The local `Paper` button serves the supplied PDF; `arXiv` points to https://arxiv.org/abs/2611.09665.
+A compact NeurIPS research poster preview appears alongside the paper introduction. The poster is available as a view-only PDF. **Read Paper** opens the official OpenReview PDF: https://openreview.net/pdf?id=sO7mOWC5TC. The arXiv button links to https://arxiv.org/abs/2611.09665.
+
+For hosting, see [`DEPLOY_CN.md`](DEPLOY_CN.md). The website retains the source figures and their provenance files in `docs/assets/`.

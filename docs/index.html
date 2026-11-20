@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="NeurIPS 2026 CAUSAL-UCB: Online Causal Configuration for Networked Systems via Doubly Robust Steady-State Learning. Paper figures, reproducible experiment records, certificate audits, poster and code." name="description"/>
+<meta content="#f6f8fc" name="theme-color"/>
+<title>CAUSAL-UCB | NeurIPS 2026 · Steady-State Causal Learning</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="cluster.css" rel="stylesheet"/>
+<link href="site-navigation.css" rel="stylesheet"/>
+<script defer="" src="site-config.js"></script>
+<script defer="" src="site.js"></script>
+<script defer="" src="cluster.js"></script>
+<link href="site-concepts.css" rel="stylesheet"/><script defer="True" src="evidence-data.js"></script><script defer="True" src="causal-explainer.js"></script><link href="site-research.css" rel="stylesheet"/><link href="lab.css" rel="stylesheet"/><script defer="" src="figure-viewer.js"></script><script defer="" src="lab.js"></script><link href="site-flow.css" rel="stylesheet"/><script defer="" src="flow-highlights.js"></script><link href="site-benchmark.css" rel="stylesheet"/><link href="site-comparison.css" rel="stylesheet"/><link href="site-experiments.css" rel="stylesheet"/><link href="site-figures.css" rel="stylesheet"/><script defer="" src="comparison-charts.js"></script><script defer="" src="experiment-ui.js"></script><script defer="" src="figure-tabs.js"></script><link href="site-refined.css" rel="stylesheet"/><script defer src="site-refined.js"></script></head>
+<body>
+<div aria-hidden="true" class="reading-progress"><span id="reading-progress-fill"></span></div>
+<div class="banner"><span class="small-label">CAUSAL-UCB</span><span class="separator">/</span><span>NeurIPS 2026 · Steady-state causal decision making</span></div>
+<header class="site-nav wrapper">
+<a aria-label="CAUSAL-UCB home" class="logo" href="#top"><img alt="" class="brand-mark" height="36" src="brand-mark.svg" width="36"/><span class="brand-wordmark">CAUSAL–UCB</span></a>
+<nav aria-label="Site navigation"><a href="#live-network">Network</a><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#results" data-open-mode="lab">Experiment</a><a href="#reproducibility">Reproducibility</a></nav>
+<a class="nav-code link-button" data-link="github" href="#resources">Code ↗</a>
+</header>
+<main id="top">
+<section aria-label="Video collage of real transportation and network infrastructure" class="cinematic" id="cinematic">
+<div aria-hidden="true" class="cinema-grid" id="cinema-grid">
+<div class="cinema-tile tile-1 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/10433645/10433645-hd_1920_1080_25fps.mp4" style="--tile:0;--poster:url('https://images.pexels.com/photos/33427160/pexels-photo-33427160.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Traffic / Los Angeles</span></div>
+<div class="cinema-tile tile-2 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/3727447/3727447-hd_1920_1080_30fps.mp4" style="--tile:1;--poster:url('https://images.pexels.com/photos/10188253/pexels-photo-10188253.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Urban flow</span></div>
+<div class="cinema-tile tile-3 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/5834623/5834623-hd_1920_1080_25fps.mp4" style="--tile:2;--poster:url('https://images.pexels.com/photos/31486642/pexels-photo-31486642.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Highway at night</span></div>
+<div class="cinema-tile tile-4 network" data-kind="network" style="--tile:3;--poster:url('https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Data center</span></div>
+<div class="cinema-tile tile-5 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/1192116/1192116-sd_640_360_30fps.mp4" style="--tile:4;--poster:url('https://images.pexels.com/photos/30071885/pexels-photo-30071885.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Intersection</span></div>
+<div class="cinema-tile tile-6 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/1169852/1169852-hd_1920_1080_30fps.mp4" style="--tile:5;--poster:url('https://images.pexels.com/photos/29825948/pexels-photo-29825948.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Expressway</span></div>
+<div class="cinema-tile tile-7 network" data-kind="network" style="--tile:6;--poster:url('https://images.pexels.com/photos/5408005/pexels-photo-5408005.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Networks &amp; nodes</span></div>
+<div class="cinema-tile tile-8 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/27783817/12223745_1920_1080_24fps.mp4" style="--tile:7;--poster:url('https://images.pexels.com/photos/37684211/pexels-photo-37684211.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Transport corridors</span></div>
+<div class="cinema-tile tile-9 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/5587732/5587732-hd_1920_1080_30fps.mp4" style="--tile:8;--poster:url('https://images.pexels.com/photos/9716226/pexels-photo-9716226.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Daytime interchange</span></div>
+<div class="cinema-tile tile-10 network" data-kind="network" style="--tile:9;--poster:url('https://images.pexels.com/photos/37730211/pexels-photo-37730211.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Server infrastructure</span></div>
+<div class="cinema-tile tile-11 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/3858833/3858833-hd_1280_720_24fps.mp4" style="--tile:10;--poster:url('https://images.pexels.com/photos/6572481/pexels-photo-6572481.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Cargo corridors</span></div>
+<div class="cinema-tile tile-12 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/857267/857267-hd_1920_1080_24fps.mp4" style="--tile:11;--poster:url('https://images.pexels.com/photos/38878811/pexels-photo-38878811.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Urban road network</span></div>
+<div class="cinema-tile tile-13 network" data-kind="network" style="--tile:12;--poster:url('https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Router systems</span></div>
+<div class="cinema-tile tile-14 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/10561887/10561887-hd_4096_2160_24fps.mp4" style="--tile:13;--poster:url('https://images.pexels.com/photos/36652841/pexels-photo-36652841.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Container terminal</span></div>
+<div class="cinema-tile tile-15 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/7385122/7385122-uhd_2560_1440_30fps.mp4" style="--tile:14;--poster:url('https://images.pexels.com/photos/36652829/pexels-photo-36652829.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Industrial freight</span></div>
+<div class="cinema-tile tile-16 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/5992517/5992517-hd_1920_1080_30fps.mp4" style="--tile:15;--poster:url('https://images.pexels.com/photos/36652833/pexels-photo-36652833.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Urban port</span></div>
+<div class="cinema-tile tile-17 network" data-kind="network" style="--tile:16;--poster:url('https://images.pexels.com/photos/17489156/pexels-photo-17489156.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Cloud infrastructure</span></div>
+<div class="cinema-tile tile-18 network" data-kind="network" data-media="https://videos.pexels.com/video-files/10433645/10433645-hd_1920_1080_25fps.mp4" style="--tile:17;--poster:url('https://images.pexels.com/photos/9122692/pexels-photo-9122692.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Wireless network tower</span></div>
+<div class="cinema-tile tile-19 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/3727447/3727447-hd_1920_1080_30fps.mp4" style="--tile:18;--poster:url('https://images.pexels.com/photos/5213170/pexels-photo-5213170.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Harbor logistics</span></div>
+<div class="cinema-tile tile-20 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/5834623/5834623-hd_1920_1080_25fps.mp4" style="--tile:19;--poster:url('https://images.pexels.com/photos/4570838/pexels-photo-4570838.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Shipping network</span></div>
+<div class="cinema-tile tile-21 network" data-kind="network" style="--tile:20;--poster:url('https://images.pexels.com/photos/17489153/pexels-photo-17489153.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Switches &amp; servers</span></div>
+<div class="cinema-tile tile-22 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/1192116/1192116-sd_640_360_30fps.mp4" style="--tile:21;--poster:url('https://images.pexels.com/photos/25381526/pexels-photo-25381526.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Port transportation</span></div>
+<div class="cinema-tile tile-23 transport" data-kind="transport" data-media="https://videos.pexels.com/video-files/1169852/1169852-hd_1920_1080_30fps.mp4" style="--tile:22;--poster:url('https://images.pexels.com/photos/12746150/pexels-photo-12746150.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">City cargo transport</span></div>
+<div class="cinema-tile tile-24 network" data-kind="network" style="--tile:23;--poster:url('https://images.pexels.com/photos/12351609/pexels-photo-12351609.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700')">
+<span aria-hidden="true" class="cinema-photo"></span><span class="tile-shade"></span>
+<span aria-hidden="true" class="tile-caption">Telecommunication network</span></div>
+</div>
+<div aria-hidden="true" class="cinema-grad"></div>
+<canvas aria-hidden="true" class="hero-cluster-network" id="hero-cluster-network"></canvas>
+<div class="cinema-content">
+<div class="cinema-kicker">ONLINE CAUSAL CONFIGURATION</div>
+<h1 aria-label="CAUSAL-UCB" class="cinema-wordmark"><span class="brand-part">CAUSAL</span><span aria-hidden="true" class="brand-join"></span><span class="brand-part">UCB</span></h1>
+<p class="cinema-title">Online Causal Configuration for Networked Systems<br class="desktop-only"/> via Doubly Robust Steady-State Learning</p>
+<div class="cinema-actions">
+<a class="cinema-btn main" href="#live-network">Explore the network <span aria-hidden="true">↗</span></a>
+<a class="cinema-btn" data-link="paper" href="#reproducibility">Read the paper ↗</a>
+<a class="cinema-btn" data-link="github" href="#reproducibility">GitHub ↗</a></div>
+</div>
+<div class="cinema-bottom">
+<div class="cinema-controls">
+
+<button aria-pressed="false" class="cinema-control" id="cinema-motion" type="button">Ⅱ PAUSE</button>
+<a class="cinema-scroll" href="#live-network">SCROLL TO EXPLORE <span>↓</span></a>
+</div>
+</div>
+</section><div aria-hidden="true" class="cinema-handoff"><span class="handoff-beam"></span><span class="handoff-beam second"></span><span class="handoff-node n1"></span><span class="handoff-node n2"></span><span class="handoff-node n3"></span><span class="handoff-node n4"></span></div><section aria-labelledby="network-heading" class="interactive-section" id="live-network">
+<div class="wrapper interactive-wrap">
+<div class="interactive-copy">
+<div class="interactive-eyebrow">01 / NETWORK MODEL  ·  <span class="teal-spark"></span> INTERACTIVE NETWORK EXPLAINER </div>
+<h2 id="network-heading">A living network.<br/><span>A stable topology.</span></h2>
+<p>Think of a network as a community of interacting units: the <strong>nodes and connections stay in place</strong>, but signals and local states change whenever a configuration is applied.</p>
+<p>Adjust the conceptual interference strength to see how strongly a change in one cluster can echo through its neighbors.</p>
+<div class="demo-insight">
+<span aria-hidden="true" class="insight-symbol">↗</span>
+<span><strong>What you’re watching</strong><br/>Breathing clusters, moving signals, and highlighted interference paths—not network growth or learned graph construction.</span>
+</div>
+
+</div>
+<div class="interactive-card">
+<div class="demo-topbar"><div class="demo-live"><span class="demo-live-dot"></span> NETWORK STATE <span class="demo-divider">/</span> 5 CLUSTERS</div><div class="demo-status" id="demo-status">FIXED EDGES</div></div>
+<div class="demo-canvas-wrap">
+<canvas aria-label="Illustrative interactive diagram of five fixed network clusters. Change the interference slider or select a cluster to alter the animated signal intensity." id="demo-network-canvas" role="img">Five stable clusters connected by fixed links.</canvas>
+<div class="demo-overlay-top"><span class="tiny-dot blue"></span> Local state <span class="tiny-dot teal"></span> Signal propagation <span class="tiny-dot amber"></span> Applied configuration</div>
+<div class="demo-mini-caption" id="demo-mini-caption">Selected cluster: C · Neighborhood response: moderate</div>
+</div>
+<div class="demo-control-area">
+<div class="demo-range-title"><label for="rho-slider">Interference strength <span class="math-rho">ρ</span></label><output for="rho-slider" id="rho-display">0.45</output></div>
+<input aria-describedby="rho-explainer" id="rho-slider" max="100" min="0" step="1" type="range" value="45"/>
+<div class="demo-range-ends"><span>Localized</span><span>Cross-cluster influence</span></div>
+<p class="demo-control-note" id="rho-explainer">Adjust the visual signal strength of the network.</p>
+<div class="demo-buttons">
+<button class="demo-button primary" id="config-next" type="button">↻ Apply next configuration</button>
+<button aria-pressed="false" class="demo-button" id="network-pause" type="button">Ⅱ Pause motion</button>
+<span class="config-pill">Configuration <b id="config-value">C</b></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div aria-hidden="true" class="network-paper-transition"></div>
+<section class="hero wrapper" id="research-intro">
+<div class="hero-headline">
+<div class="eyebrow"><span class="eyebrow-circle"></span><span id="research-status">NeurIPS 2026 · accepted · arXiv:2611.09665</span></div>
+<h2>Online causal configuration <span>for reliable steady-state decisions.</span></h2>
+<p class="hero-lead">Exploratory telemetry can misrank configurations when measurement perturbs local actions and shifts the post-burn-in context law. CAUSAL-UCB evaluates no-exploration causal value using joint-exposure doubly robust scores and calibrated predecision certificates.</p>
+<p class="byline" hidden="" id="authors"></p>
+<div class="hero-cta" id="resources">
+<a class="btn primary" data-link="paper" href="#overview">↗ Read Paper</a>
+<a class="btn" data-link="github" href="#reproducibility">⌘ GitHub Code</a>
+</div>
+<div class="poster-peek" id="poster">
+  <a class="poster-peek-image" href="assets/poster/causal-ucb-poster.pdf" target="_blank" rel="noopener" aria-label="Open NeurIPS 2026 research poster PDF"><img src="assets/poster-preview.jpg" loading="lazy" alt="CAUSAL-UCB research poster overview"/></a>
+  <div class="poster-peek-copy"><span class="poster-peek-kicker">NEURIPS 2026 · RESEARCH POSTER</span><strong>The paper, at a glance.</strong><p>Causal identification, value certificates and experimental findings—on one page.</p><a href="assets/poster/causal-ucb-poster.pdf" target="_blank" rel="noopener">Explore poster <span aria-hidden="true">↗</span></a></div>
+</div>
+
+</div>
+<div class="hero-aside">
+<div class="flow-toolbar"><span class="flow-status">CAUSAL DECISION LOOP</span><button aria-label="Pause decorative motion" aria-pressed="false" class="motion-toggle" id="motion-toggle" type="button">Ⅱ Pause motion</button></div>
+<div aria-label="Five-step causal decision loop. Select any stage to inspect its scientific input and output." class="flow-graphic flow-interactive">
+<div class="flow-steps">
+<button aria-pressed="false" class="pipeline-step" data-flow="0" type="button"><span class="pipeline-index">01</span><span class="pipeline-copy"><span class="pipeline-label">DEPLOY</span><strong>Global configuration</strong><small>Choose z ∈ Z and measurement rate η</small></span><span class="flow-chevron">↗</span></button>
+<div aria-hidden="true" class="pipeline-connector"><span></span></div>
+<button aria-pressed="false" class="pipeline-step" data-flow="1" type="button"><span class="pipeline-index">02</span><span class="pipeline-copy"><span class="pipeline-label">INTERFERE</span><strong>Adaptive local controllers</strong><small>Neighbors and exposure mapping</small></span><span class="flow-chevron">↗</span></button>
+<div aria-hidden="true" class="pipeline-connector"><span></span></div>
+<button aria-pressed="false" class="pipeline-step" data-flow="2" type="button"><span class="pipeline-index">03</span><span class="pipeline-copy"><span class="pipeline-label">OBSERVE</span><strong>Post-burn-in telemetry</strong><small>Measured law differs from target law</small></span><span class="flow-chevron">↗</span></button>
+<div aria-hidden="true" class="pipeline-connector"><span></span></div>
+<button aria-pressed="false" class="pipeline-step" data-flow="3" type="button"><span class="pipeline-index">04</span><span class="pipeline-copy"><span class="pipeline-label">EVALUATE</span><strong>Target causal value</strong><small>Clipped DR score + error budget</small></span><span class="flow-chevron">↗</span></button>
+<div aria-hidden="true" class="pipeline-connector"><span></span></div>
+<button aria-pressed="false" class="pipeline-step" data-flow="4" type="button"><span class="pipeline-index">05</span><span class="pipeline-copy"><span class="pipeline-label">SELECT</span><strong>Optimistic next configuration</strong><small>Predecision upper value</small></span><span class="flow-chevron">↗</span></button>
+<div aria-label="Configuration selected at the final stage is deployed in the next round" class="feedback-return"><svg aria-hidden="true" preserveaspectratio="none" viewbox="0 0 450 57"><path d="M424 0 V22 Q424 34 405 34 H33 Q14 34 14 19 Research" fill="none" stroke="currentColor" stroke-dasharray="8 7" stroke-width="2"></path><path d="M8 15 L14 3 L20 15" fill="none" stroke="currentColor" stroke-width="2"></path></svg><span>FEEDBACK · NEXT ROUND → DEPLOY</span></div>
+</div>
+<aside aria-live="polite" class="flow-detail" hidden="" id="flow-detail"><span class="detail-eyebrow">STEP 04 / CAUSAL VALUE</span><h3>From exploratory logs to target value</h3><div class="detail-item"><b>Received</b><p>Source-regime action, exposure, context, reward, and fitted nuisance quantities.</p></div><div class="detail-item"><b>Principle</b><p>Clipped doubly robust evaluation; separate action-law correction from context transport.</p></div><div class="detail-item"><b>Result</b><p>Target-value estimate and a conditionally calibrated uncertainty radius.</p></div><div class="detail-item"><b>Passed forward</b><p>Predecision upper values for optimistic configuration selection.</p></div><span class="detail-cite">Paper §4.1–4.2 · Theorem 1</span></aside>
+</div>
+</div>
+</section>
+<div aria-label="The research pipeline flows from network configuration through observations and counterfactual evaluation to an optimistic decision" class="concept-marquee">
+<div aria-hidden="true" class="concept-track">
+<span>GLOBAL CONFIGURATION</span><b>✳</b><span>NETWORK INTERFERENCE</span><b>✳</b><span>EXPLORATORY FEEDBACK</span><b>✳</b><span>DOUBLY ROBUST ESTIMATION</span><b>✳</b><span>OPTIMISTIC DECISIONS</span><b>✳</b>
+<span>GLOBAL CONFIGURATION</span><b>✳</b><span>NETWORK INTERFERENCE</span><b>✳</b><span>EXPLORATORY FEEDBACK</span><b>✳</b><span>DOUBLY ROBUST ESTIMATION</span><b>✳</b><span>OPTIMISTIC DECISIONS</span><b>✳</b>
+</div>
+</div>
+<section aria-labelledby="overview-heading" class="section wrapper" id="overview">
+<div class="section-label">02 / RESEARCH QUESTION</div>
+<div class="overview-row"><h2 id="overview-heading">Reliable decisions need <span>both identification and deployment.</span></h2><div><p>Global decisions change the actions of many interdependent units. Exploratory measurements can improve the identification of a counterfactual value, yet also alter the operating conditions that the final system should optimize.</p><p>The target is <strong>no-exploration steady-state utility</strong>. Action–exposure overlap alone cannot transport post-burn-in contexts; CAUSAL-UCB separates these sources of error and selects configurations using predecision certified upper values.</p></div></div>
+
+<div class="figures-contribution-intro"><span class="section-label">THE PAPER’S SCIENTIFIC ARGUMENT</span><h3>What must be identified before a configuration can be trusted?</h3><p>Exploration changes what is observed—and potentially the operating regime whose utility we seek. The paper isolates <strong>interference-aware action correction</strong> from <strong>steady-state context transport</strong>, then certifies their remaining uncertainty before selection.</p></div>
+<div class="figures-contributions" aria-label="Manuscript scientific contributions">
+<article><span>IDENTIFICATION · PROP. 3</span><h4>Same logs, different target values</h4><p>Even identical exploratory logs can conceal different no-exploration steady-state values. Exposure overlap is not a guarantee of context transport.</p></article>
+<article><span>THEOREM 1 · CERTIFICATE</span><h4>Separate the uncertainty budgets</h4><p>A predecision value radius separates network-window fluctuation, nuisance products, target-law error, clipping, exposure/response transport, context shifts, configuration mismatch and residual temporal dependence.</p></article>
+<article><span>THEOREMS 2–3 · DECISION</span><h4>Information has deployment cost</h4><p>Measurement improves identification yet perturbs utility; regret guarantees require valid certificates and selected-information growth.</p></article>
+<article><span>PROPOSITION 1 · RESTRICTED MODEL</span><h4>One executable radius</h4><p>Under known local interference, the same anytime calibrated radius supports estimation, optimistic selection and reported uncertainty.</p></article>
+</div>
+</section>
+<section aria-labelledby="method-heading" class="section method-band" id="method"><div class="wrapper">
+<div class="section-label">03 / METHOD</div><div class="section-top"><h2 id="method-heading">From exploratory telemetry <span>to deployment decisions.</span></h2><p>A four-stage causal-optimistic loop.</p></div>
+<div class="method-grid">
+<article aria-controls="method-expansion" aria-expanded="false" class="method-card" data-method="0" role="button" tabindex="0"><div class="method-number">I</div><h3>Exposure interface</h3><p>Map local actions and neighbors into a context suitable for auditing interference.</p><span class="method-show">Explore theory &amp; evidence  ↗</span></article>
+<article aria-controls="method-expansion" aria-expanded="false" class="method-card" data-method="1" role="button" tabindex="0"><div class="method-number">II</div><h3>Measurement exploration</h3><p>Create support for evaluating alternatives while tracking the deployment perturbation.</p><span class="method-show">Explore theory &amp; evidence  ↗</span></article>
+<article aria-controls="method-expansion" aria-expanded="false" class="method-card" data-method="2" role="button" tabindex="0"><div class="method-number">III</div><h3>Doubly robust evaluator</h3><p>Combine outcome regression, logging correction, clipping, and uncertainty assessment.</p><span class="method-show">Explore theory &amp; evidence  ↗</span></article>
+<article aria-controls="method-expansion" aria-expanded="false" class="method-card" data-method="3" role="button" tabindex="0"><div class="method-number">IV</div><h3>Optimistic selection</h3><p>Use the evaluated values and bounds to choose the next global configuration.</p><span class="method-show">Explore theory &amp; evidence  ↗</span></article>
+</div><div aria-live="polite" class="method-expansion" hidden="" id="method-expansion"><div class="method-expansion-head"><span id="method-deep-tag">SELECTED MODULE</span><button aria-label="Close technical details" id="method-close" type="button">× Close</button></div><h3 id="method-deep-title"></h3><p id="method-deep-lead"></p><div class="method-detail-grid"><div><b>Identification / technical basis</b><p id="method-deep-theory"></p></div><div><b>Input → Output</b><p id="method-deep-io"></p></div><div><b>What the paper actually establishes</b><p id="method-deep-proof"></p></div><div><b>Limitations / checks</b><p id="method-deep-caveat"></p></div></div><div class="method-ref" id="method-deep-reference"></div></div>
+<div class="notice"><strong>Certificate scope:</strong> The executable guarantee is calibrated under the stated known-ring, matched-reward and noise assumptions; its scope is documented in the paper.</div>
+</div></section>
+<section aria-labelledby="results-heading" class="section wrapper" id="results">
+<div class="section-label">04 / EVIDENCE &amp; EXPERIMENTS</div><div class="section-top"><h2 id="results-heading">Evidence, <span>from the paper.</span></h2><p>Explore seven recorded methods, inspect the publication figures, or test new parameters in a separate browser experiment.</p></div>
+<div class="evidence-switcher" role="tablist" aria-label="Choose experimental view">
+ <button class="evidence-choice is-active" type="button" id="evidence-tab-archive" role="tab" aria-selected="true" aria-controls="evidence-archive" data-evidence-view="archive"><span class="choice-index">01 · RECORDED RESULTS</span><strong>Paper evidence <span aria-hidden="true">↗</span></strong><small>7 methods · 24 seeds · original plots</small></button>
+ <button class="evidence-choice" type="button" id="evidence-tab-lab" role="tab" aria-selected="false" aria-controls="evidence-lab" data-evidence-view="lab" tabindex="-1"><span class="choice-index">02 · EXPLORE THE METHOD</span><strong>Run an experiment <span aria-hidden="true">↗</span></strong><small>8 policies &amp; ablations · local Python</small></button>
+</div>
+<div class="research-view" id="evidence-archive" role="tabpanel" aria-labelledby="evidence-tab-archive">
+<div aria-labelledby="archive-bench-heading" class="archive-benchmark experiment-benchmark" id="cert-benchmark">
+  <div class="experiment-intro">
+    <div><span class="experiment-kicker">EXPERIMENTAL RESULTS <i>·</i> 7 METHODS <i>·</i> 24 SEEDS</span><h3 id="archive-bench-heading">Compare seven <em>recorded methods.</em></h3><p>Browse paired-seed results and replay the original recorded trajectories.</p></div>
+    <a class="experiment-primary-link" href="#live-lab">Customize &amp; run <span aria-hidden="true">↗</span></a>
+  </div>
+<div aria-label="Verified benchmark outcomes" class="archive-proof-strip">
+<div><span>High mismatch · Regret</span><strong>1.732 <i>vs.</i> 6.326</strong><small>Certified DR / Certified IPS</small></div>
+<div><span>Certificate width</span><strong>0.552 <i>vs.</i> 1.541</strong><small>Decision-active worst-pair diameter</small></div>
+<div><span>Measurement trade-off</span><strong>30.607 <i>vs.</i> 23.217</strong><small>Deployment gap · DR costs more</small></div>
+</div>
+
+  <div class="archive-bench-board compare-board experiment-board">
+    <div class="archive-controls experiment-toolbar" aria-label="Experiment controls">
+      <div class="experiment-select-row">
+        <div class="archive-control"><label for="archive-regime">Scenario</label><select id="archive-regime"><option value="high_mismatch">High mismatch · η 0.55</option><option value="low_mismatch">Low mismatch · η 0.08</option></select></div>
+        <div class="archive-control"><label for="archive-cohort">Seed</label><select id="archive-cohort"><option value="mean">24 paired seeds · mean</option></select></div>
+        <details class="experiment-method-picker" id="experiment-method-picker"><summary><span>Baselines <b id="compare-selected-count">7</b>/7</span><i aria-hidden="true">⌄</i></summary>
+<div class="compare-method-select"><div class="compare-method-header"><label>Choose baselines (7)</label><div class="compare-presets"><button type="button" id="compare-preset-all">All 7</button><button type="button" id="compare-preset-certified">Certified</button><button type="button" id="compare-preset-reference">Reference + other</button></div></div><div id="compare-method-list" class="compare-method-list" role="group" aria-label="Select archived methods"></div></div>
+</details>
+      </div>
+      <div class="experiment-switch-row">
+        <div class="experiment-control-group"><span class="experiment-small-label">METRIC</span><div aria-label="Archived study metric" class="archive-metrics" role="group"><button aria-pressed="true" class="active" data-archive-metric="regret" type="button">Target regret</button><button aria-pressed="false" data-archive-metric="deployment" type="button">Deployment gap</button><button aria-pressed="false" data-archive-metric="ate" type="button">Final ATE error</button><button aria-pressed="false" data-archive-metric="width" type="button">Certified width</button></div>
+</div>
+        <div class="experiment-control-group experiment-views"><span class="experiment-small-label">VIEW</span><div class="compare-view-buttons" aria-label="Choose chart resolution"><button class="active" type="button" data-compare-view="trajectory" aria-pressed="true">● Round traces</button><button type="button" data-compare-view="terminal" aria-pressed="false">▥ Final comparison</button></div>
+</div>
+      </div>
+      <div class="experiment-toolbar-foot"><span id="archive-metric-explainer">Archived target regret from recorded online decisions.</span><a href="#live-lab">Run new experiment ↗</a></div>
+      <div class="experiment-source-controls"><details class="experiment-data-details"><summary>Data &amp; display options <span>⌄</span></summary><div class="experiment-data-body"><label class="compare-ci-control"><input id="compare-show-ci" type="checkbox"/> Show descriptive 95% confidence bands</label>
+<div class="archive-downloads"><a download="" href="assets/certified-benchmark/cert_dr_all_rounds.csv">Certified round logs ↓</a><a download="" href="assets/certified-benchmark/reference_high_mismatch_5methods.csv.gz">Other 5 · high-mismatch logs ↓</a><a download="" href="assets/certified-benchmark/per_seed.csv">All 7 · per-seed finals ↓</a><button id="compare-download-selection" type="button">↓ Export selected results (CSV)</button></div>
+
+</div></details></div>
+    </div>
+<div class="archive-visual">
+<div class="archive-chart-title"><div><div class="archive-overline" id="archive-chart-kicker">ARCHIVED · SEVEN-METHOD STUDY</div><h4 id="archive-chart-heading">Cumulative target regret</h4></div><span class="archive-round-tag" id="archive-round-tag">Round 200 / 200</span></div>
+<div class="archive-chart-frame"><svg aria-label="Paper benchmark original archived results" id="archive-archive-plot" role="img" viewBox="0 0 800 340"><text fill="#607895" text-anchor="middle" x="400" y="168">Loading verified seven-method archive…</text></svg></div>
+<div class="archive-chart-playback"><button id="archive-replay" type="button">↺ Replay</button><button id="archive-play" type="button">▶ Play</button><label for="archive-round">Round <strong id="archive-round-current">200</strong></label><input aria-label="Archived round" id="archive-round" max="200" min="1" step="1" type="range" value="200"/><span>200</span></div>
+<div class="archive-legend" id="compare-dynamic-legend" aria-label="Visible methods legend"></div>
+<div class="archive-chart-foot" id="archive-chart-note">Recorded trajectories and paired-seed summaries.</div>
+
+
+  </div>
+  </div>
+  <div class="experiment-chart-status" id="compare-source-coverage" aria-live="polite">Loading original results…</div>
+<div class="archive-records"><div class="archive-records-heading"><div><b>All selected methods — source records</b><small id="archive-table-subhead">24 paired seeds · round 200</small></div><span id="compare-table-badge">7 methods · 24 seeds · 200 rounds</span></div><div class="archive-table-overflow"><table><thead><tr><th>Method</th><th>Target regret ↓</th><th>Deploy. gap ↓</th><th>Final ATE ↓</th><th>Certified width ↓</th><th>Selected configuration</th><th>Available record</th></tr></thead><tbody id="archive-record-body"><tr><td colspan="7">Loading original records…</td></tr></tbody></table></div><p class="archive-table-note">At an intermediate round, non-certified Low Mismatch trajectories are unavailable: “—” means <strong>not logged</strong>, never zero. Final ATE and valid certified width appear only at the terminal summary. Decision-active certified widths are available for the two certified methods.</p></div>
+
+  <details class="experiment-insights"><summary>Research insights <span>View interpretations &amp; comparisons</span></summary><div class="archive-interpretation"><div><span class="archive-overline">PAIRED-SEED INTERPRETATION</span><h4 id="archive-interp-title">Decision advantage depends on the regime.</h4><p id="archive-paired-result">Loading paired seed results…</p></div><div><span class="archive-overline">DECISION-ESTIMATION GAP</span><p id="archive-estimation-result">Loading reference-policy comparison…</p></div><div><span class="archive-overline">RELIABILITY &amp; COST</span><p id="archive-cost-result">Loading deployment trade-offs…</p></div></div>
+</details>
+  <details class="experiment-methodology"><summary>About the experiments &amp; source data <span>↗</span></summary>
+    <p>High mismatch has saved 200-round trajectories for all seven methods. Low mismatch has trajectories for the two certified methods and final results for the other five. Values without saved traces are never interpolated. The browser experiment uses a separate conditional setup.</p>
+    <div class="archive-provenance"><div><strong>Protocol &amp; provenance</strong><p>Original frozen SYN 2026-10-20 · known sparse ring and matched-noise assumptions · fixed exploration · 24 paired seeds × 200 rounds. Certified curves come from <code>cert_dr_all_rounds.csv</code>. High-mismatch curves for the other five methods come from the exact archived <code>reference/main_per_round.csv.gz</code> and were cross-checked against <code>per_seed.csv</code>. Low-mismatch reference results are terminal-only. All terminal values come from <code>per_seed.csv</code> and <code>summary.csv</code>; paired intervals come from <code>paired_regret_95CI.csv</code>. </p></div><div><a href="assets/certified-benchmark/protocol.json" rel="noopener" target="_blank">Read protocol ↗</a><a href="assets/certified-benchmark/SOURCE_SHA256.json" rel="noopener" target="_blank">Verify SHA-256 ↗</a><a href="#live-lab">Go to live conditional experiment ↓</a></div></div>
+  </details>
+</div>
+<details class="evidence-supplement" id="paper-figures-shell"><summary><span><b>Publication figures</b><small>Five figures · source images</small></span><span class="supplement-open">Explore figures ↗</span></summary><div class="paper-atlas" id="paper-figures"><div class="atlas-heading"><span class="section-label">PUBLICATION FIGURES · 3–7</span><h3>Publication figures.</h3><p>Explore the source figure images. Select a figure or use ← / → to move between tabs.</p></div>
+<div class="plate-tabs figures-figure-tabs" id="paper-plate-tabs" role="tablist" aria-label="Main-paper figure selector">
+<button type="button" role="tab" aria-selected="true" aria-controls="paper-plate-image" tabindex="0" class="active" data-plate="0"><span>Fig. 3</span><small>Online selection</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="paper-plate-image" tabindex="-1" data-plate="1"><span>Fig. 4</span><small>Interference</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="paper-plate-image" tabindex="-1" data-plate="2"><span>Fig. 5</span><small>Overlap &amp; transport</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="paper-plate-image" tabindex="-1" data-plate="3"><span>Fig. 6</span><small>Ablation</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="paper-plate-image" tabindex="-1" data-plate="4"><span>Fig. 7</span><small>Deployment trade-off</small></button>
+</div>
+<figure class="paper-plate" id="paper-plate-panel"><a href="assets/paper-figures/paper-figure-3.png" id="paper-plate-link" rel="noopener" target="_blank"><img alt="Manuscript Figure 3: certified online selection, four panels" id="paper-plate-image" loading="lazy" decoding="async" src="assets/paper-figures/paper-figure-3.png"/></a><figcaption><strong id="paper-plate-caption">Fig. 3 · Certified online selection</strong><span id="paper-plate-description">24 paired seeds and 200 rounds: network schematic, target regret, maximum pairwise ATE error and decision-active certified interval diameter.</span><p class="figures-source">Manuscript page <b id="paper-plate-page">8</b>.</p><a id="paper-figure-source" href="https://openreview.net/pdf?id=sO7mOWC5TC" rel="noopener" target="_blank">Read paper ↗</a></figcaption></figure>
+</div>
+</details>
+<details class="evidence-supplement" id="audit-figures-shell"><summary><span><b>Certificate audits &amp; diagnostics</b><small>Appendix figures · separate protocols</small></span><span class="supplement-open">Explore audits ↗</span></summary><div class="appendix-atlas" id="audit-figures"><span class="section-label">APPENDIX · PROTOCOLS MUST NOT BE POOLED</span><h3>Independent certificate audits.</h3><p>Full-path coverage (Fig. 28) and 18-cell paired regret (Fig. 27) use distinct audit protocols. Select a figure to inspect its corresponding evidence.</p>
+<div class="audit-tabs figures-figure-tabs" id="audit-tabs" role="tablist" aria-label="Appendix figure selector">
+<button type="button" role="tab" aria-selected="true" aria-controls="audit-image" tabindex="0" class="active" data-audit="0"><span>Fig. 28</span><small>Full-path coverage</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="audit-image" tabindex="-1" data-audit="1"><span>Fig. 26</span><small>Optimism sensitivity</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="audit-image" tabindex="-1" data-audit="2"><span>Fig. 27</span><small>18-cell regret forest</small></button>
+<button type="button" role="tab" aria-selected="false" aria-controls="audit-image" tabindex="-1" data-audit="3"><span>Fig. 31</span><small>Hidden violations</small></button>
+</div>
+<div class="audit-spotlight"><div class="audit-visual"><a href="assets/paper-audit-figures/Fig28_Full_Path_Coverage_p61.png" id="audit-image-link" rel="noopener" target="_blank"><img alt="Figure 28: 300-seed full-path certificate coverage and OFU path inequality" id="audit-image" loading="lazy" decoding="async" src="assets/paper-audit-figures/Fig28_Full_Path_Coverage_p61.png"/></a></div><div class="audit-copy"><span class="science-tag" id="audit-protocol">FIG. 28 · PDF PAGE 61 · 300 SEEDS × 160 ROUNDS</span><h4 id="audit-title">Full-path coverage &amp; OFU inequality</h4><p id="audit-desc">Both full-path target coverage and the OFU path inequality hold in all 300/300 independently seeded audit runs; intervals are 95% Wilson intervals.</p><div class="audit-conclusion"><span>INTERPRETATION BOUNDARY</span><p id="audit-boundary">These empirical audit results hold for the specified finite-state calibrated protocol. They do not certify arbitrary unmodeled networks.</p></div><p class="audit-source" id="audit-source">Source: manuscript · Figure 28 · page 61</p><a href="assets/paper-audit-figures/Fig28_Full_Path_Coverage_p61.png" id="audit-original" rel="noopener" target="_blank">Open exact figure ↗</a><a class="audit-paper-link" href="https://openreview.net/pdf?id=sO7mOWC5TC" id="audit-paper-link" rel="noopener" target="_blank">Read paper ↗</a></div></div></div>
+</details>
+</div>
+<div class="research-view" id="evidence-lab" role="tabpanel" aria-labelledby="evidence-tab-lab" hidden>
+<section aria-labelledby="lab-heading" class="lab-section" id="live-lab">
+<div class="wrapper"><div class="lab-eyebrow"><span class="lab-dot"></span> ADJUSTABLE EXPERIMENT <span class="lab-live-pill">BROWSER PYTHON</span></div>
+<div class="lab-intro">
+<div><h2 id="lab-heading">Explore new settings.<br/><em>Compare local trajectories.</em></h2>
+<p>Choose a policy, parameter regime and random seed; see how decisions and estimation change.</p></div>
+<div class="lab-compute-chip"><span class="lab-compute-symbol">⌘</span><div><b>Local Python</b><small>Pyodide · Web Worker · no paid server</small></div></div>
+</div>
+<p class="experiment-lab-one-liner">Conditional known-ring model · independently computed trajectories. <a href="#experiment-lab-notes">Experiment scope ↗</a></p>
+<details class="experiment-lab-notes" id="experiment-lab-notes" hidden><summary>About the live experiment</summary><p>The local known-ring experiment and the recorded full benchmark have different protocols. Compare patterns within each study rather than pooling values.</p></details>
+<div class="lab-layout">
+<div class="lab-controls experiment-lab-controls"><div class="experiment-lab-topline"><b>YOUR EXPERIMENT</b><span>Local Python · adjustable</span></div><details class="experiment-lab-customize" id="experiment-lab-customize" open><summary><span>⚙ Customize parameters &amp; methods</span><small id="experiment-live-summary">40 rounds · η 0.55 · ρ 1.00 · seed 42</small><span class="experiment-down">⌄</span></summary><div class="experiment-lab-custom-content">
+<div class="lab-controls-title">01 / Experiment setup <small>Controlled synthetic environment</small></div>
+<div class="lab-control"><label for="lab-rounds">Rounds <output id="lab-rounds-out">40</output></label><input id="lab-rounds" max="120" min="20" step="10" type="range" value="40"/><div class="lab-ticks"><span>20</span><span>120</span></div></div>
+<div class="lab-control"><label for="lab-eta">Exploration intensity η <output id="lab-eta-out">0.55</output></label><input id="lab-eta" max="0.75" min="0.1" step="0.05" type="range" value="0.55"/><div class="lab-ticks"><span>0.10</span><span>0.75</span></div></div>
+<div class="lab-control"><label for="lab-rho">Interference multiplier ρ <output id="lab-rho-out">1.00</output></label><input id="lab-rho" max="1.5" min="0.5" step="0.1" type="range" value="1.0"/><div class="lab-ticks"><span>0.50</span><span>1.50</span></div></div>
+<div class="lab-control"><label for="lab-seed">Random seed</label><input id="lab-seed" inputmode="numeric" max="9999999" min="0" type="number" value="42"/></div>
+<div class="lab-control lab-method-select"><label>Policies &amp; ablations <small>select any</small></label>
+<label class="lab-choice"><input checked="" type="checkbox" value="CAUSAL-UCB"/><span class="lab-swatch" style="--swatch:#1466a9"></span>Reference CAUSAL-UCB</label>
+<label class="lab-choice"><input checked="" type="checkbox" value="IPS-UCB"/><span class="lab-swatch" style="--swatch:#31a695"></span>Reference IPS-UCB</label>
+<label class="lab-choice"><input checked="" type="checkbox" value="Greedy-Raw"/><span class="lab-swatch" style="--swatch:#dc8a36"></span>Greedy-Raw</label>
+<label class="lab-choice"><input type="checkbox" value="Raw-UCB"/><span class="lab-swatch" style="--swatch:#9569b3"></span>Raw-UCB</label>
+<label class="lab-choice"><input type="checkbox" value="Switchback-OED"/><span class="lab-swatch" style="--swatch:#d0577e"></span>Switchback-OED</label>
+<label class="lab-choice"><input type="checkbox" value="no_DR"/><span class="lab-swatch" style="--swatch:#a64c87"></span>Ablation · no DR correction</label>
+<label class="lab-choice"><input type="checkbox" value="no_OFU"/><span class="lab-swatch" style="--swatch:#6583b9"></span>Ablation · no optimism</label>
+<label class="lab-choice"><input type="checkbox" value="no_Exploration"/><span class="lab-swatch" style="--swatch:#5b8875"></span>Ablation · no exploration</label>
+</div></div></details>
+<button class="lab-run" id="lab-run" type="button">▶  Run experiment</button>
+<button class="lab-cancel" hidden="" id="lab-cancel" type="button">Stop current run</button>
+<p aria-live="polite" class="lab-status" id="lab-status">Ready. First run downloads the Python runtime (~10–25 MB). Internet required for the runtime.</p>
+</div>
+<div class="lab-output">
+<div class="lab-output-top"><div><div class="lab-micro">02 / EXPERIMENT OUTPUT</div><h3 id="lab-chart-title">New outcomes, computed locally.</h3></div><span class="lab-record" id="lab-result-type">AWAITING FIRST RUN</span></div>
+<div aria-label="Experiment chart metric" class="lab-tabs" role="group"><button class="active" data-lab-metric="regret" type="button">Cumulative target regret</button><button data-lab-metric="width" type="button">Common DR audit width</button><button data-lab-metric="deploy" type="button">Deployment gap</button></div>
+<div aria-live="polite" class="lab-comparison" hidden="" id="lab-comparison">
+<div class="lab-comparison-head"><strong>Decision and estimation diagnostics</strong><span>From this run · final native estimator errors</span></div>
+<p id="lab-match-note"></p><div class="lab-estimator-grid" id="lab-estimator-grid"></div>
+</div>
+<div class="lab-chart-wrap"><svg aria-label="Run an experiment to see plotted results" id="lab-chart" role="img" viewbox="0 0 800 330"><text fill="#8494aa" font-size="18" text-anchor="middle" x="400" y="165">Run an experiment to reveal each decision round</text></svg></div>
+<div class="lab-playback"><button disabled="" id="lab-play" type="button">▶ Play</button><label for="lab-frame">Round <strong id="lab-frame-val">—</strong></label><input disabled="" id="lab-frame" max="40" min="1" type="range" value="1"/><span id="lab-frame-max">/ —</span><button disabled="" id="lab-download" title="Save fresh experiment traces as CSV" type="button">↓ CSV</button><button disabled="" id="lab-download-json" title="Save fresh results as JSON" type="button">↓ JSON</button></div>
+<div class="lab-legend" id="lab-legend"><span>Selected algorithms and trajectories appear after running Python.</span></div>
+<div class="lab-table-head"><h4>Round-level observation</h4><small id="lab-table-subtitle">Run the experiment to view results</small></div>
+<div class="lab-table-scroll"><table class="lab-table"><thead><tr><th>Policy</th><th>Configuration</th><th>Target regret</th><th>DR audit width</th><th>Matched nodes</th></tr></thead><tbody id="lab-table-body"><tr><td colspan="5">No measurements yet</td></tr></tbody></table></div>
+</div>
+</div>
+<details class="lab-method-note"><summary>Experiment scope &amp; interpretation</summary><p> Local Python evaluates the original conditional policy implementation on a 24-node known-ring, randomized-exposure model. Values, regret and final estimator errors use a synthetic oracle for post-decision evaluation. DR widths are within-run diagnostics. The two certified policies of the archived seven-method benchmark use a separate evaluator; results should be compared within each protocol. Computation stays on your device.</p></details>
+<p class="lab-technical">Requires WebAssembly and a one-time Pyodide download. Full benchmark protocols and source data are available above.</p>
+</div>
+</section>
+</div>
+</section>
+<section aria-labelledby="repro-heading" class="section repro-band" id="reproducibility"><div class="wrapper">
+<div class="section-label">05 / REPRODUCIBILITY</div><div class="repro-grid"><div><h2 id="repro-heading">Reproduce the <span>research.</span></h2><p>Explore the executable core, recorded benchmark data, source figures and supplementary protocols.</p><ul class="clean-list"><li>Controlled main experiment: <strong>24 seeds × 200 rounds</strong></li><li>Parameter-screening sweeps: <strong>4 seeds × 100 rounds</strong> (exploratory)</li><li>Trace-driven semi-synthetic: <strong>8 seeds × 180 rounds</strong></li></ul></div>
+<div class="terminal"><div class="terminal-head"><span>▣</span> QUICK START <span class="terminal-dots">● ● ●</span></div><pre><code><span class="cm"># From repository root</span>
+python -m pip install -r requirements.txt
+python -m unittest discover -s src/tests -v
+python src/fast_compare.py --out results_reproduced --seeds 24 --T 200 --scenarios high_mismatch,low_mismatch</code></pre><div class="terminal-foot">Exact archive protocol for the certified known-interference special case. Other experiments have separate entry points.</div></div></div>
+<p class="repro-footer">The benchmark, certificate audit and trace-driven experiments use distinct protocols; consult the code and supplementary material for the matching setup.</p>
+</div></section>
+<section aria-label="Resources" class="section wrapper last-section"><div class="section-label">06 / RESOURCES</div><h2>Read. Reproduce. <span>Discuss.</span></h2><p>Choose the format that fits what you want to do: understand the paper, reproduce a claim, or exchange ideas with the community.</p><div class="resource-links"><a data-link="paper" href="#resources">Paper ↗</a><a data-link="arxiv" href="#reproducibility">arXiv ↗</a><a data-link="github" href="#resources">GitHub ↗</a><a data-link="huggingface" href="#resources">Hugging Face ↗</a></div><p class="quiet">Read the peer-reviewed submission on OpenReview or explore the preprint on arXiv.</p></section>
+<details class="cinema-credits wrapper" id="video-credits"><summary>Visual credits &amp; sources</summary><p>Homepage background: illustrative transport and infrastructure footage from Pexels, plus a procedural network graphic. <a href="https://www.pexels.com/legal-pages/license/" rel="noopener" target="_blank">Pexels license ↗</a> · <a href="assets/video-sources.html" target="_blank">Media source list ↗</a></p></details>
+</main>
+<dialog aria-label="Enlarged experimental figure" class="figure-dialog" id="figure-dialog">
+<button aria-label="Close image" class="dialog-close" id="figure-dialog-close" type="button">✕</button>
+<img alt="" id="figure-dialog-image"/>
+<p id="figure-dialog-caption"></p>
+</dialog>
+<footer class="site-footer"><div class="wrapper footer-inner"><div><b>CAUSAL–UCB</b><p>A research project on causal evaluation and online steady-state configuration.</p></div><div>Source figures: project research archive <span>·</span> <a href="#top">Back to top ↑</a></div></div></footer>
+</body>
+</html>
