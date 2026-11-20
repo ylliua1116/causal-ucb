@@ -20,7 +20,7 @@ def save_csv(p,rows):
  with p.open('w',newline='',encoding='utf-8') as f:
   w=csv.DictWriter(f,fieldnames=keys);w.writeheader();w.writerows(rows)
 
-def run_one_seed(sc,setup,seed,target,logged,save_full=True):
+def run_one_seed(sc,setup,seed,target,logged,save_full=True,reference_rounds=None):
  """Noise/action arrays exactly match the original source SeedSequence labeling.
     Each policy sees only its chosen reward/exposure and past selected outcomes.
  """
@@ -56,6 +56,10 @@ def run_one_seed(sc,setup,seed,target,logged,save_full=True):
     windows.append((a,y,e))
    policy.observe(k,t,setup.eta,windows) if not name.startswith('CAUSAL-UCB-CERT-') else policy.observe(k,t,windows)
    regret+=best-target[k];deploy+=target[k]-logged[k];decisions.append(k)
+   if reference_rounds is not None and not name.startswith('CAUSAL-UCB-CERT-'):
+    reference_rounds.append(dict(condition=sc,seed=seed,method=name,t=t+1,k=int(k),
+       target_regret_increment=float(best-target[k]),cumulative_regret=float(regret),
+       deployment_gap_increment=float(target[k]-logged[k]),cumulative_deploy=float(deploy)))
    if name.startswith('CAUSAL-UCB-CERT-'):
     scored=policy.arms[k].events[-setup.windows:]
     strict=all(e['training_latest_round']==t-1 for e in scored)

@@ -1,0 +1,26 @@
+{
+  "generator": "Original frozen SYN 2026-10-20",
+  "assumptions": "known sparse ring radius, stationary homogeneous no-exploration clipped gaussian, matched iid noise, known sigma upper bound, fixed eta, no clipping bias",
+  "seed_start": 51001,
+  "seeds": 24,
+  "T": 200,
+  "windows": 2,
+  "pilot": 2,
+  "methods": [
+    "CAUSAL-UCB-CERT-DR",
+    "CAUSAL-UCB-CERT-IPS",
+    "CAUSAL-UCB",
+    "IPS-UCB",
+    "Raw-UCB",
+    "Greedy-Raw",
+    "Switchback-OED"
+  ],
+  "eta": {
+    "high_mismatch": 0.55,
+    "low_mismatch": 0.08,
+    "medium_mismatch": 0.3
+  },
+  "epsilon_union": "log(2*K*(N*T*windows+1)/delta)",
+  "oracle_used_for_evaluation_only": true,
+  "parent_reference": "CAUSAL_UCB_GitHub_Conditional_Release_20261020"
+}

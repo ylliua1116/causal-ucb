@@ -1,0 +1,49 @@
+/* CAUSAL-UCB figure galleries: faithful figure atlas and generous, reliable interaction targets.
+   Presentation-only rules; does not change CAUSAL-UCB algorithms or records. */
+html{scroll-behavior:smooth}
+#paper-figures,#audit-figures,#poster{scroll-margin-top:105px}
+.atlas-figure-tabs{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px!important;margin:20px 0 20px!important;position:relative;z-index:12;overflow:visible}
+.audit-tabs.atlas-figure-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+.plate-tabs.atlas-figure-tabs button,.audit-tabs.atlas-figure-tabs button{
+  box-sizing:border-box;appearance:none;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  gap:7px;width:100%;min-width:0;min-height:78px;padding:15px 17px!important;
+  border:2px solid #c9daec!important;border-radius:17px!important;background:#fff;color:#35597b;
+  font:inherit;line-height:1.3;text-align:left;cursor:pointer!important;pointer-events:auto!important;
+  position:relative;z-index:2;touch-action:manipulation;-webkit-tap-highlight-color:rgba(38,116,171,.13);
+  box-shadow:0 2px 0 rgba(24,65,107,.03);transition:background-color .15s,border-color .15s,box-shadow .15s,transform .15s;
+}
+.atlas-figure-tabs button > *{pointer-events:none}
+.atlas-figure-tabs button span{display:block;font-size:15px;font-weight:860;line-height:1.17}
+.atlas-figure-tabs button small{font-size:12px;line-height:1.27;font-weight:650;color:inherit;opacity:.84;white-space:normal;overflow-wrap:break-word}
+.plate-tabs.atlas-figure-tabs button:hover,.audit-tabs.atlas-figure-tabs button:hover{background:#eef6ff;border-color:#83b7dd!important;box-shadow:0 8px 22px rgba(36,83,130,.1);transform:translateY(-1px)}
+.plate-tabs.atlas-figure-tabs button.active,.audit-tabs.atlas-figure-tabs button.active,.plate-tabs.atlas-figure-tabs button[aria-selected="true"],.audit-tabs.atlas-figure-tabs button[aria-selected="true"]{background:#1b3c5e!important;color:#fff!important;border-color:#1b3c5e!important;box-shadow:0 10px 23px rgba(27,60,94,.16)}
+.atlas-figure-tabs button:focus-visible{outline:4px solid #3c9acf;outline-offset:4px;z-index:5}
+.paper-plate,.audit-spotlight{position:relative;z-index:1}
+.paper-plate>a,.audit-visual>a{min-width:0;cursor:zoom-in;touch-action:manipulation}
+.paper-plate>a img,.audit-visual img{max-width:100%;height:auto;object-fit:contain}
+.paper-plate figcaption{gap:16px}
+.paper-plate .atlas-source{margin:0;color:#57718c;font-size:12px;line-height:1.65}
+#paper-figure-source,#audit-paper-link,#audit-original{display:inline-flex;align-items:center;min-height:43px;padding:10px 12px;border-radius:10px;background:#f1f6fc;font-size:12px;font-weight:750;color:#2769a0;text-decoration:none;touch-action:manipulation}
+#paper-figure-source:hover,#audit-paper-link:hover,#audit-original:hover{background:#e6f1fc;color:#144b7e}
+.atlas-contribution-intro{margin-top:clamp(27px,4vw,45px);padding:26px 27px 3px;border-top:1px solid #dce7f0}
+.atlas-contribution-intro h3{font:650 clamp(24px,3vw,32px)/1.25 Georgia,serif;color:#18385b;max-width:800px;margin:11px 0 12px}
+.atlas-contribution-intro p{color:#536e84;font-size:13px;line-height:1.85;max-width:910px}
+.atlas-contributions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;padding:15px 0 0}
+.atlas-contributions article{background:linear-gradient(150deg,#f8fbff,#eef5fc);padding:19px 19px 21px;border:1px solid #d8e6f2;border-radius:16px}
+.atlas-contributions article>span{display:block;font-size:9px;letter-spacing:.095em;font-weight:850;color:#42869c}
+.atlas-contributions h4{font:700 16px/1.35 Georgia,serif;color:#183b5c;margin:10px 0 9px}
+.atlas-contributions p{font-size:11.5px;line-height:1.68;color:#587087;margin:0}
+.atlas-poster{margin:52px 0 4px;padding:23px;display:grid;grid-template-columns:minmax(255px,.75fr) minmax(0,1.25fr);gap:25px;align-items:center;background:#f5f9fe;border:1px solid #d7e7f3;border-radius:23px;box-shadow:0 15px 35px rgba(26,65,104,.07)}
+.atlas-poster-copy{padding:15px}
+.atlas-poster-copy h3{font:700 clamp(25px,3vw,36px)/1.2 Georgia,serif;color:#183a5d;margin:14px 0}
+.atlas-poster-copy p{font-size:13px;color:#567087;line-height:1.8;max-width:450px}
+.atlas-poster-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.atlas-poster-actions a{display:inline-flex;align-items:center;min-height:48px;padding:11px 16px;border-radius:12px;border:1px solid #c8dbe9;background:#fff;text-decoration:none;color:#1f5477;font-size:12px;font-weight:760;touch-action:manipulation}
+.atlas-poster-actions a:first-child{background:#1d436a;color:#fff;border-color:#1d436a}
+.atlas-poster-cover{display:block;position:relative;border:1px solid #d9e5f0;border-radius:13px;overflow:hidden;background:#fff;box-shadow:0 11px 33px rgba(32,66,104,.12)}
+.atlas-poster-cover img{display:block;width:100%;height:auto;max-height:410px;object-fit:contain}
+.atlas-poster-cover span{position:absolute;right:12px;bottom:11px;padding:8px 12px;border-radius:9px;background:rgba(25,57,89,.9);color:#fff;font:750 11px Inter,Arial,sans-serif;letter-spacing:.06em}
+@media(max-width:1050px){.atlas-contributions{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-figure-tabs{gap:9px!important}.atlas-figure-tabs button{padding:13px!important}.atlas-figure-tabs button span{font-size:13px}.atlas-figure-tabs button small{font-size:10.5px}}
+@media(max-width:760px){.atlas-figure-tabs,.audit-tabs.atlas-figure-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-figure-tabs button{min-height:73px!important}.atlas-poster{grid-template-columns:1fr;gap:14px}.atlas-poster-cover img{max-height:none}.atlas-contribution-intro{padding-left:4px;padding-right:4px}}
+@media(max-width:480px){.atlas-figure-tabs{gap:9px!important}.atlas-figure-tabs button{padding:12px 13px!important;min-height:76px!important}.atlas-contributions{grid-template-columns:1fr}.atlas-contributions article{padding:17px}.atlas-poster{padding:12px}.atlas-poster-copy{padding:12px}}
+@media(prefers-reduced-motion:reduce){.atlas-figure-tabs button{transition:none;transform:none!important}html{scroll-behavior:auto}}

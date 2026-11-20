@@ -1,7 +1,10 @@
 {
   "src/cert_dr.py": "6440e6e84d4c66b8a1e72d64d96a240625e0fb1f56b6b7947b97a63cde5c8d9c",
-  "src/fast_compare.py": "ef0a4d10e7d306d6d42fa4519142e4a6f4d7ff4230eeed677d1a42e436ca94af",
+  "src/fast_compare.py": "cb23253ae554c7413e613f507b6e7f9eb8fe9351b2d429b5dafbb7f086c0a8aa",
   "src/original_source/causal_ucb_conditional.py": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f",
   "src/tests/test_certificate.py": "558f60ffc32516982e2316c74bda87daae08bc5604f95248e93ab1b0050be043",
-  "docs/live-lab/causal_ucb_conditional.py": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f"
+  "docs/live-lab/causal_ucb_conditional.py": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f",
+  "src/replay_missing_rounds.py": "8d752c6e5bd314576759a0b897633bc90f9d4c7ac68b0281ce9ade36ded8f7c4",
+  "src/build_replayed_comparison.py": "41105f7475c230aeae577c316e29e3c7dd3cd025a0a79ec3b910429a7bbcc3b4",
+  "src/tests/test_seven_method_replay.py": "fd3e63be62967643da048700b8d380a5ec13a95201b0fd705ba772a7ef93390f"
 }

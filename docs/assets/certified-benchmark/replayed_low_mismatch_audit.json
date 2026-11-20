@@ -1,0 +1,38 @@
+{
+  "result": "pass",
+  "type": "new deterministic source replay / not an original archived low-mismatch CSV",
+  "cohort": {
+    "condition": "low_mismatch",
+    "eta": 0.08,
+    "T": 200,
+    "seeds": 24,
+    "seed_start": 51001,
+    "N": 24,
+    "windows": 2,
+    "methods": [
+      "CAUSAL-UCB",
+      "IPS-UCB",
+      "Raw-UCB",
+      "Greedy-Raw",
+      "Switchback-OED"
+    ]
+  },
+  "per_method_round_rows": 4800,
+  "new_reference_rows": 24000,
+  "terminal_archived_records_checked": 168,
+  "choice_sha256_checks_passed": 168,
+  "terminal_metrics_checked": [
+    "regret",
+    "gap",
+    "ATE_error",
+    "deploy",
+    "width_common_local_audit",
+    "final_configuration"
+  ],
+  "max_abs_terminal_difference": 0,
+  "archive_sha256": "7a334ee8fae9aa8ca03ea48dded4302b3f00a845da6cb940ca9978d2f0968e6a",
+  "replay_csv_sha256": "fd151d1d84e55aeddae3374d2dad785ea0eabf0a3dbbef15ddcd7212e44eba4d",
+  "driver_sha256": "cb23253ae554c7413e613f507b6e7f9eb8fe9351b2d429b5dafbb7f086c0a8aa",
+  "generator_sha256": "945253b8626cd6ffb0c81641c4c21cae8c98799d7750f860c26fdb169685034f",
+  "note": "Target regret and deployment costs are computed against evaluation oracles AFTER choosing z_t; certification not assigned to baselines."
+}

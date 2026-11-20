@@ -1,0 +1,11 @@
+{
+  "provenance": "01_foundation_20261021/01_proposition1_certified_decision/results_final",
+  "note": "Hash of exact raw files copied from user-supplied research ZIP. Visualization JSON is a derived representation and should not be confused with original raw files.",
+  "files": {
+    "cert_dr_all_rounds.csv": "f8744ac52de253029e906cda8ce3b60fb6a1b614dfe9e5949fcb305540b3e412",
+    "per_seed.csv": "7a334ee8fae9aa8ca03ea48dded4302b3f00a845da6cb940ca9978d2f0968e6a",
+    "summary.csv": "1a96f0749fee2289126a79101cc1851be0fac302531698fbddea0e72309d2fa3",
+    "paired_regret_95CI.csv": "dabd7eaa0d02800f0b873f5e9c81964b1c05b15c489ad38e1aec0fbdfd7e0d26",
+    "protocol.json": "a28043eff8dcfc476dcd3d1da5be40890d658aa2440898702d49727d5f1257bf"
+  }
+}
