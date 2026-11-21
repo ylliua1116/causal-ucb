@@ -11,17 +11,56 @@
 <link href="style.css" rel="stylesheet"/>
 <link href="cluster.css" rel="stylesheet"/>
 <link href="network-visual.css" rel="stylesheet"/>
-<script defer="" src="site-config.js"></script>
+<script defer="" src="site-config.js?links=public"></script>
 <script defer="" src="site.js"></script>
 <script defer="" src="cluster.js"></script>
-<link href="method-detail.css" rel="stylesheet"/><script defer="True" src="method-detail.js"></script><link href="science-layout.css" rel="stylesheet"/><link href="lab.css" rel="stylesheet"/><script defer="" src="lab.js"></script><link href="research-experience.css" rel="stylesheet"/><script defer="" src="stage-highlight.js"></script><link href="benchmark-layout.css" rel="stylesheet"/><link href="benchmark-comparison.css" rel="stylesheet"/><link href="unified-evidence.css" rel="stylesheet"/><link href="figure-atlas.css" rel="stylesheet"/><script defer="" src="benchmark-records.js"></script><script defer="" src="ui-enhancements.js"></script><script defer="" src="figure-accessibility.js"></script><script defer="" src="figure-gallery.js"></script><script defer="" src="evidence-switch.js"></script><link href="editorial-polish.css" rel="stylesheet"/></head>
+<link href="method-detail.css" rel="stylesheet"/><script defer="True" src="method-detail.js"></script><link href="science-layout.css" rel="stylesheet"/><link href="lab.css" rel="stylesheet"/><script defer="" src="lab.js"></script><link href="research-experience.css" rel="stylesheet"/><script defer="" src="stage-highlight.js"></script><link href="benchmark-layout.css" rel="stylesheet"/><link href="benchmark-comparison.css" rel="stylesheet"/><link href="unified-evidence.css" rel="stylesheet"/><link href="figure-atlas.css" rel="stylesheet"/><script defer="" src="benchmark-records.js"></script><script defer="" src="ui-enhancements.js"></script><script defer="" src="figure-accessibility.js"></script><script defer="" src="figure-gallery.js"></script><script defer="" src="evidence-switch.js"></script><link href="editorial-polish.css" rel="stylesheet"/><style id="hero-citation-style">
+/* Full-width workflow below a balanced scientific introduction and citation card. */
+#research-intro.hero { max-width:1480px; display:grid!important; grid-template-columns:minmax(0,1.88fr) minmax(330px,1fr)!important; column-gap:clamp(24px,3.5vw,56px)!important; row-gap:42px!important; align-items:start!important; }
+#research-intro .hero-headline { width:100%!important; max-width:none!important; min-width:0; }
+#research-intro .hero-aside { grid-column:1 / -1; width:100%!important; max-width:none!important; margin-top:2px!important; }
+#research-intro .hero-citation-card { grid-column:2; grid-row:1; min-width:0; margin-top:4px; scroll-margin-top:28px; padding:clamp(20px,2.25vw,30px); border:1px solid #d3e2f2; border-radius:22px; background:linear-gradient(155deg,#fbfdff 0%,#f3f8ff 100%); box-shadow:0 16px 44px rgba(25,56,98,.08); color:#183759; }
+.hero-citation-overline { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; font:800 10px/1.35 ui-sans-serif,system-ui,sans-serif; letter-spacing:.095em; color:#335fa8; }
+.hero-citation-overline>span {display:inline-flex;gap:8px;align-items:center}
+.hero-citation-dot {width:7px;height:7px;background:#648cd3;border-radius:50%;box-shadow:0 0 0 4px #e1edff;flex:none}
+.hero-citation-overline a { font-size:10px;letter-spacing:0;color:#375c84;text-decoration:none;white-space:nowrap;padding-bottom:2px;border-bottom:1px solid #b7cee8; }
+.hero-citation-overline a:hover,.hero-citation-overline a:focus-visible {color:#254bae;border-color:#254bae}
+.hero-citation-card h3 {font:700 clamp(24px,2.2vw,31px)/1.17 Georgia,serif;letter-spacing:-.03em;margin:26px 0 7px;color:#163456}
+.hero-citation-intro {color:#647b95;font-size:12px;line-height:1.5;margin:0 0 22px}
+.hero-citation-codebox {border:1px solid #d8e5f2;border-radius:14px;overflow:hidden;background:#fff}
+.hero-citation-codebar {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 16px;background:#edf4fc;border-bottom:1px solid #dce7f3}
+.hero-citation-codebar>span {font:800 10px/1.4 ui-sans-serif,system-ui,sans-serif;letter-spacing:.115em;color:#56708c}
+.hero-citation-copy {appearance:none;display:inline-flex;align-items:center;gap:9px;padding:8px 11px;background:#214c80;color:#fff;border:1px solid #214c80;border-radius:9px;font:750 11px/1.2 ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.hero-citation-copy:hover,.hero-citation-copy:focus-visible {background:#16375c;border-color:#16375c}
+.hero-citation-card pre {font:11px/1.62 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace;overflow-wrap:anywhere;white-space:pre-wrap;word-break:normal;padding:15px 17px 18px;margin:0;color:#34526f;max-width:100%}
+.hero-citation-card code{font:inherit;color:inherit}
+.hero-citation-bottom {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;font-size:10.5px;line-height:1.5;color:#7287a1}
+.hero-citation-bottom>span{min-width:0}
+.hero-citation-bottom a{color:#2b6193;font-weight:750;white-space:nowrap}
+.hero-citation-bottom a:hover {text-decoration:underline}
+@media (max-width:1120px) {
+  #research-intro.hero {grid-template-columns:minmax(0,1fr)!important;row-gap:26px!important;max-width:1180px}
+  #research-intro .hero-headline {max-width:900px!important}
+  #research-intro .hero-citation-card {grid-column:1;grid-row:auto;width:100%;max-width:740px;margin-top:4px}
+  #research-intro .hero-aside {grid-column:1;}
+}
+@media(max-width:640px) {
+  #research-intro.hero {row-gap:20px!important}
+  #research-intro .hero-citation-card {padding:19px 16px;border-radius:17px}
+  .hero-citation-card h3{margin-top:19px;font-size:25px}
+  .hero-citation-card pre{padding:13px;font-size:10px}
+  .hero-citation-overline{flex-wrap:wrap;gap:10px}
+  .hero-citation-bottom{align-items:flex-start}
+}
+</style>
+</head>
 <body>
 <div aria-hidden="true" class="reading-progress"><span id="reading-progress-fill"></span></div>
 <div class="banner"><span class="small-label">CAUSAL-UCB</span><span class="separator">/</span><span>NeurIPS 2026 · Steady-state causal decision making</span></div>
 <header class="site-nav wrapper">
 <a aria-label="CAUSAL-UCB home" class="logo" href="#top"><img alt="" class="brand-mark" height="36" src="brand-mark.svg" width="36"/><span class="brand-wordmark">CAUSAL–UCB</span></a>
 <nav aria-label="Site navigation"><a href="#live-network">Network</a><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#live-lab">Run Lab</a><a href="#reproducibility">Reproducibility</a></nav>
-<a class="nav-code link-button" data-link="github" href="#resources">Code ↗</a>
+<a class="nav-code link-button" data-link="github" href="https://github.com/ylliua1116/causal-ucb">Code ↗</a>
 </header>
 <main id="top">
 <section aria-label="Video collage of real transportation and network infrastructure" class="cinematic" id="cinematic">
@@ -107,9 +146,9 @@
 <p class="cinema-title">Online Causal Configuration for Networked Systems<br class="desktop-only"/> via Doubly Robust Steady-State Learning</p>
 <div class="cinema-actions">
 <a class="cinema-btn main" href="#live-network">Explore the network <span aria-hidden="true">↗</span></a>
-<a class="cinema-btn" data-link="paper" href="#reproducibility">Read the paper ↗</a>
-<a class="cinema-btn" data-link="arxiv" href="#reproducibility">arXiv ↗</a><a class="cinema-btn" data-link="github" href="#reproducibility">GitHub ↗</a>
-<a class="cinema-btn" data-link="huggingface" href="#resources">Hugging Face ↗</a></div>
+<a class="cinema-btn" data-link="paper" href="https://openreview.net/pdf?id=sO7mOWC5TC">Read the paper ↗</a>
+<a class="cinema-btn" data-link="arxiv" href="https://arxiv.org/abs/2611.09665">arXiv ↗</a><a class="cinema-btn" data-link="github" href="https://github.com/ylliua1116/causal-ucb">GitHub ↗</a>
+<a class="cinema-btn" data-link="huggingface" href="https://huggingface.co/spaces/ylliua1116/causal-ucb">Hugging Face ↗</a></div>
 </div>
 <div class="cinema-bottom">
 <div class="cinema-controls">
@@ -160,14 +199,31 @@
 <p class="hero-lead">Exploratory telemetry can misrank configurations when measurement perturbs local actions and shifts the post-burn-in context law. CAUSAL-UCB evaluates no-exploration causal value using joint-exposure doubly robust scores and calibrated predecision certificates.</p>
 <p class="byline" hidden="" id="authors"></p>
 <div class="hero-cta" id="resources">
-<a class="btn primary" data-link="paper" href="#overview">↗ Read Paper</a>
-<a class="btn" data-link="arxiv" href="#reproducibility">↗ arXiv</a><a class="btn" data-link="github" href="#reproducibility">⌘ GitHub Code</a>
-<a class="btn" data-link="huggingface" href="#reproducibility">♡ Hugging Face</a>
+<a class="btn primary" data-link="paper" href="https://openreview.net/pdf?id=sO7mOWC5TC">↗ Read Paper</a>
+<a class="btn" data-link="arxiv" href="https://arxiv.org/abs/2611.09665">↗ arXiv</a><a class="btn" data-link="github" href="https://github.com/ylliua1116/causal-ucb">⌘ GitHub Code</a>
+<a class="btn" data-link="huggingface" href="https://huggingface.co/spaces/ylliua1116/causal-ucb">♡ Hugging Face</a>
 </div><a aria-label="Open the NeurIPS research poster PDF" class="research-poster-link" href="assets/poster/research-poster.pdf" id="poster" rel="noopener noreferrer" target="_blank">
 <span class="research-poster-thumb"><img alt="Preview of the NeurIPS 2026 research poster" loading="lazy" src="assets/poster-preview.jpg"/></span>
 <span class="research-poster-copy"><small>NEURIPS 2026 · RESEARCH POSTER</small><strong>The paper, at a glance.</strong><span>Identification · certificates · online decisions</span></span><span aria-hidden="true" class="research-poster-icon">↗</span>
 </a>
 </div>
+<aside class="hero-citation-card" id="citation" aria-labelledby="citation-heading">
+  <div class="hero-citation-overline"><span><span class="hero-citation-dot" aria-hidden="true"></span> PUBLICATION · NeurIPS 2026</span><a href="citation.bib" download="CAUSAL-UCB.bib">Download .bib ↗</a></div>
+  <h3 id="citation-heading">Cite this work.</h3>
+  <p class="hero-citation-intro">Official OpenReview citation · ready to copy.</p>
+  <div class="hero-citation-codebox">
+    <div class="hero-citation-codebar"><span>BIBTEX</span><button class="hero-citation-copy" type="button" data-cite-copy="bibtex-source" data-cite-status="bibtex-copy-status" aria-label="Copy the official BibTeX citation">Copy BibTeX <span aria-hidden="true">⧉</span></button></div>
+    <pre><code id="bibtex-source">@inproceedings{
+liu2026online,
+title={Online Causal Configuration for Networked Systems via Doubly Robust Steady-State Learning},
+author={Yuli Liu and Zhiheng Zhang},
+booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
+year={2026},
+url={https://openreview.net/forum?id=sO7mOWC5TC}
+}</code></pre>
+  </div>
+  <div class="hero-citation-bottom"><span id="bibtex-copy-status" aria-live="polite">Use this citation when referencing the paper.</span><a href="https://openreview.net/forum?id=sO7mOWC5TC" target="_blank" rel="noopener noreferrer">OpenReview ↗</a></div>
+</aside>
 <div class="hero-aside">
 <div class="flow-toolbar"><span class="flow-status">CAUSAL DECISION LOOP</span><button aria-label="Pause decorative motion" aria-pressed="false" class="motion-toggle" id="motion-toggle" type="button">Ⅱ Pause motion</button></div>
 <div aria-label="Five-step causal decision loop. Select any stage to inspect its scientific input and output." class="flow-graphic flow-interactive">
@@ -342,7 +398,7 @@ python -m unittest discover -s src/tests -v
 python src/fast_compare.py --out results_reproduced --seeds 24 --T 200 --scenarios high_mismatch,low_mismatch</code></pre><div class="terminal-foot">Exact archive protocol for the certified known-interference special case. Other experiments have separate entry points.</div></div></div>
 <p class="repro-footer">The provided src/ directory holds the core executable comparison. The 300-seed audit and full trace-driven experiments are distinct supplementary protocols; this static project page displays extracted figures and saved results rather than claiming to rerun them.</p>
 </div></section>
-<section aria-label="Resources" class="section wrapper last-section"><div class="section-label">06 / RESOURCES</div><h2>Read. Reproduce. <span>Discuss.</span></h2><p>Choose the format that fits what you want to do: understand the paper, reproduce a claim, or exchange ideas with the community.</p><div class="resource-links"><a data-link="paper" href="#resources">Paper ↗</a><a data-link="arxiv" href="#reproducibility">arXiv ↗</a><a data-link="github" href="#resources">GitHub ↗</a><a data-link="huggingface" href="#resources">Hugging Face ↗</a></div><p class="quiet">Paper opens the official OpenReview PDF. The archived chart records and source figure crops remain available here for exploration.</p></section>
+<section aria-label="Resources" class="section wrapper last-section"><div class="section-label">06 / RESOURCES</div><h2>Read. Reproduce. <span>Discuss.</span></h2><p>Choose the format that fits what you want to do: understand the paper, reproduce a claim, or exchange ideas with the community.</p><div class="resource-links"><a data-link="paper" href="https://openreview.net/pdf?id=sO7mOWC5TC">Paper ↗</a><a data-link="arxiv" href="https://arxiv.org/abs/2611.09665">arXiv ↗</a><a data-link="github" href="https://github.com/ylliua1116/causal-ucb">GitHub ↗</a><a data-link="huggingface" href="https://huggingface.co/spaces/ylliua1116/causal-ucb">Hugging Face ↗</a><a href="#citation">BibTeX ↓</a></div><p class="quiet">Paper opens the official OpenReview PDF. The archived chart records and source figure crops remain available here for exploration.</p></section>
 <details class="cinema-credits wrapper credits-disclosure" id="video-credits"><summary>Visual sources &amp; licenses <span aria-hidden="true">⌄</span></summary><p>Visual montage: illustrative footage of transport and infrastructure from Pexels; interactive network artwork is procedural. <a href="https://www.pexels.com/legal-pages/license/" rel="noopener" target="_blank">Pexels license ↗</a></p><p><a href="assets/video-sources.html" target="_blank">Video sources and replacement guide ↗</a></p></details>
 </main>
 <dialog aria-label="Enlarged experimental figure" class="figure-dialog" id="figure-dialog">
@@ -351,5 +407,46 @@ python src/fast_compare.py --out results_reproduced --seeds 24 --T 200 --scenari
 <p id="figure-dialog-caption"></p>
 </dialog>
 <footer class="site-footer"><div class="wrapper footer-inner"><div><b>CAUSAL–UCB</b><p>A research project on causal evaluation and online steady-state configuration.</p></div><div>Source figures: project research archive <span>·</span> <a href="#top">Back to top ↑</a></div></div></footer>
+
+<script id="citation-copy-script">
+(function () {
+  async function copyCitation(btn) {
+    const code = document.getElementById(btn.getAttribute('data-cite-copy'));
+    if (!code) return;
+    const text = code.textContent.trim();
+    let ok = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      }
+    } catch (e) { /* Fall back for embedded pages and older browsers. */ }
+    if (!ok) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.setAttribute('readonly', '');
+      el.style.cssText = 'position:fixed;left:-9999px;top:0';
+      document.body.appendChild(el);
+      el.select();
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      el.remove();
+    }
+    const initial = 'Copy BibTeX';
+    btn.textContent = ok ? 'Copied!' : 'Select text to copy';
+    const status = document.getElementById(btn.getAttribute('data-cite-status'));
+    if (status) status.textContent = ok ? 'BibTeX copied to clipboard.' : 'Select the citation text and copy it manually.';
+    if (!ok) {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(code);
+      selection.removeAllRanges(); selection.addRange(range);
+    }
+    window.setTimeout(() => { btn.textContent = initial; }, 2500);
+  }
+  document.querySelectorAll('[data-cite-copy]').forEach(btn => {
+    btn.addEventListener('click', () => copyCitation(btn));
+  });
+})();
+</script>
 </body>
 </html>
